@@ -12,7 +12,7 @@ module LoadRunner
     set :server, :puma
 
     configure :development do
-      register Sinatra::Reloader
+      register Sinatra::Reloader if defined? Sinatra::Reloader
     end
 
     # Since we cannot use any config values in the main body of the class,

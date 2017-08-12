@@ -1,15 +1,11 @@
 LoadRunner
 
 Usage:
-  loadrunner init (server|client)
   loadrunner server [--port N --bind IP]
   loadrunner send URL REPO EVENT REF
   loadrunner (-h|--help|--version)
 
 Commands:
-  init
-    ...
-  
   server
     Start the webhook server.
 
@@ -36,15 +32,15 @@ Parameters:
 
 Options:
   --port N
-    Set the port of the webhook server
+    Set the port of the webhook server.
 
   --bind IP
-    Set the listening address of the webhook server
+    Set the listening address of the webhook server.
 
 
 Environment Variables:
   GITHUB_SECRET_TOKEN=y0urAP1k3y
-    Set Your GitHub secret token
+    Set Your GitHub secret token.
 
 Examples:
   # Simulate push events

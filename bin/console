@@ -2,8 +2,8 @@
 
 require "irb"
 require "irb/completion" # easy tab completion
-require "quata"
+require "loadrunner"
 
-include Quata
+include LoadRunner
 
 IRB.start
