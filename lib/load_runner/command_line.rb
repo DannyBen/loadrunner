@@ -33,7 +33,7 @@ module LoadRunner
     def send
       client = Client.new client_opts
       response = client.send args['EVENT'], payload_opts
-      p response
+      puts response
     end
 
     def server

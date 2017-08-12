@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-message = [
-  "Received ping event, and these environment variables:",
-  "REPO: #{ENV['REPO']}",
-  "TAG: #{ENV['TAG']}",
-  "BRANCH: #{ENV['BRANCH']}",
-]
-
-File.write "output.txt", message.join("\n")

@@ -28,9 +28,18 @@ $ gem install loadrunner
 Getting Started
 --------------------------------------------------
 
-Soon
+    # Create a sample hook handler
+    $ mkdir -p handlers/myrepo
+    $ echo "#\!/usr/bin/env bash" > handlers/myrepo/push
+    $ echo "echo hello > output.txt" >> handlers/myrepo/push
 
-Usage
---------------------------------------------------
+    # Start the server
+    $ loadrunner server
 
-Soon
+    # In another terminal, send a sample webhook event
+    $ loadrunner send localhost:3000 myrepo push master
+
+    # Verify the handler was executed
+    $ cat output.txt
+
+
