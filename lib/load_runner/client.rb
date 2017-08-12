@@ -56,14 +56,9 @@ module LoadRunner
     def repo_from_opts(opts)
       if opts[:repo] =~ /.+\/.+/
         _owner, name = opts[:repo].split '/'
-        {
-          name: name,
-          full_name: opts[:repo]
-        }
+        { name: name, full_name: opts[:repo] }
       else 
-        {
-          name: opts[:repo]
-        }
+        { name: opts[:repo] }
       end
     end
 

@@ -2,7 +2,7 @@ LoadRunner
 
 Usage:
   loadrunner server [--port N --bind IP]
-  loadrunner send URL REPO EVENT REF
+  loadrunner send URL REPO EVENT [REF]
   loadrunner (-h|--help|--version)
 
 Commands:

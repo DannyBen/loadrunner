@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require "sinatra/reloader"
+require "sinatra/json"
 require 'active_support/core_ext/hash/indifferent_access'
 
 module LoadRunner
@@ -25,5 +26,4 @@ module LoadRunner
       set :port, opts[:port] || '3000'
     end
   end
-
 end
