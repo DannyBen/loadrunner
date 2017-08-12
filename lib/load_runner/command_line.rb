@@ -33,7 +33,7 @@ module LoadRunner
     def send
       client = Client.new client_opts
       response = client.send args['EVENT'], payload_opts
-      puts response
+      p response
     end
 
     def server
@@ -52,8 +52,9 @@ module LoadRunner
       result = { repo: args['REPO'] }
 
       ref = args['REF']
-      ref = "refs/tags/#{$1}" if ref =~ /^tag:(.+)/
-      ref = "refs/heads/#{$1}" if ref =~ /^branch:(.+)/
+      ref = "refs/tags/#{$1}" if ref =~ /^tag=(.+)/
+      ref = "refs/heads/#{$1}" if ref =~ /^branch=(.+)/
+      ref = "refs/heads/#{ref}" if ref !~ /^refs/
 
       result[:ref] = ref
       result

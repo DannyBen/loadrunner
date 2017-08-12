@@ -18,7 +18,12 @@ module LoadRunner
       opts[:branch] = push[:ref].sub('refs/heads/', '') if push[:ref] =~ /refs\/heads/
       opts[:tag]    = push[:ref].sub('refs/tags/', '') if push[:ref] =~ /refs\/tags/
 
-      json execute_handlers opts
+      runner = Runner.new opts
+      success = runner.execute
+
+      status 404 unless success
+
+      json runner.response
     end
   end
 end

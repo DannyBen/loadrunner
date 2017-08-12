@@ -25,10 +25,11 @@ Parameters:
     Any GitHub event, for example: push or ping.
 
   REF
-    A branch or tag specifier. This parameter supports three formats:
-    * tag:tag_name
-    * branch:branch_name
-    * raw ref string (for example /refs/tags/tagname)
+    A branch or tag specifier. This parameter supports four formats:
+    * branch_name
+    * tag=tag_name
+    * branch=branch_name
+    * raw ref string (for example refs/tags/tagname)
 
 Options:
   --port N
@@ -44,8 +45,9 @@ Environment Variables:
 
 Examples:
   # Simulate push events
-  loadrunner send localhost:3000 my_repo push branch:master
-  loadrunner send localhost:3000 my_repo push tag:staging
+  loadrunner send localhost:3000 my_repo push master
+  loadrunner send localhost:3000 my_repo push branch=master
+  loadrunner send localhost:3000 my_repo push tag=staging
   loadrunner send localhost:3000 my_repo push refs/tags/staging
 
   # Start the server
