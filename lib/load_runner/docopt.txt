@@ -1,0 +1,59 @@
+LoadRunner
+
+Usage:
+  loadrunner init (server|client)
+  loadrunner server [--port N --bind IP]
+  loadrunner send URL REPO EVENT REF
+  loadrunner (-h|--help|--version)
+
+Commands:
+  init
+    ...
+  
+  server
+    Start the webhook server.
+
+  send
+    Send a simulated GitHub event to a webhook server.
+
+Parameters:
+  URL
+    The URL of the webhook server. This server should have a /payload
+    endpoint that responds to POST requests.
+
+  REPO
+    The name of the repository. This can be either the short name 
+    (my_repo), or the full name (my_name/my_repo).
+
+  EVENT
+    Any GitHub event, for example: push or ping.
+
+  REF
+    A branch or tag specifier. This parameter supports three formats:
+    * tag:tag_name
+    * branch:branch_name
+    * raw ref string (for example /refs/tags/tagname)
+
+Options:
+  --port N
+    Set the port of the webhook server
+
+  --bind IP
+    Set the listening address of the webhook server
+
+
+Environment Variables:
+  GITHUB_SECRET_TOKEN=y0urAP1k3y
+    Set Your GitHub secret token
+
+Examples:
+  # Simulate push events
+  loadrunner send localhost:3000 my_repo push branch:master
+  loadrunner send localhost:3000 my_repo push tag:staging
+  loadrunner send localhost:3000 my_repo push refs/tags/staging
+
+  # Start the server
+  loadrunner server
+  loadrunner server --bind 0.0.0.0 --port 3000
+
+
