@@ -18,7 +18,8 @@ module LoadRunner
 
     def send_payload(event=:push, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
-      self.class.post "/payload", body: @payload, headers: headers(:push)
+      headers = headers event
+      self.class.post "/payload", body: @payload, headers: headers
     end
 
     private
@@ -32,7 +33,7 @@ module LoadRunner
 
     def signature
       return nil unless secret_token
-      signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
+      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
     end
 
     def build_payload(opts={})
