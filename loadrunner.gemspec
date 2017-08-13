@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.14'
   s.add_development_dependency 'byebug', '~> 9.0'
   s.add_development_dependency 'sinatra-contrib', '~> 2.0'
+  s.add_development_dependency 'rack-test', '~> 0.7'
 end

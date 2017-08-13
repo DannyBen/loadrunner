@@ -4,6 +4,10 @@ module LoadRunner
   class Server < ServerBase
     include ServerHelper
 
+    get '/' do
+      "ok"
+    end
+
     post '/payload' do
       request.body.rewind
       payload_body = request.body.read
