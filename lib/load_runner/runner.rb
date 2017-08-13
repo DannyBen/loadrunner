@@ -53,12 +53,12 @@ module LoadRunner
     end
 
     def matching_handlers
-      base = "handlers/#{opts[:repo]}"
-      handlers = ["#{base}/#{opts[:event]}"]
+      base = "handlers/#{opts[:repo]}/#{opts[:event]}"
+      handlers = ["#{base}"]
 
       handlers.tap do |h|
-        h << "#{base}/#{opts[:event]}@branch=#{opts[:branch]}" if opts[:branch]
-        h << "#{base}/#{opts[:event]}@tag=#{opts[:tag]}" if opts[:tag]
+        h << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
+        h << "#{base}@tag=#{opts[:tag]}" if opts[:tag]
       end
     end
 
