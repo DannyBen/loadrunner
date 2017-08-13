@@ -8,7 +8,7 @@ module LoadRunner
       request.body.rewind
       payload_body = request.body.read
 
-      verify_signature payload_body if secret_token
+      verify_signature payload_body
 
       push = ActiveSupport::HashWithIndifferentAccess.new JSON.parse payload_body
 

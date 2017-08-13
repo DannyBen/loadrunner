@@ -1,5 +1,6 @@
 require 'singleton'
 require 'docopt'
+require 'awesome_print'
 
 module LoadRunner
 
@@ -33,7 +34,9 @@ module LoadRunner
     def send
       client = Client.new client_opts
       response = client.send args['EVENT'], payload_opts
-      puts response
+
+      puts "Reesponse code: #{response.code}"
+      ap response
     end
 
     def server
@@ -44,10 +47,13 @@ module LoadRunner
     def client_opts
       {
         base_url: args['URL'], 
-        secret_token: '123'
+        secret_token: ENV['GITHUB_SECRET_TOKEN']
       }
     end
 
+    # Convert command line arguments to a hash suitable for consumption
+    # by Client#send. In essence, we are simply converting the input REF
+    # argument, which can come in several forms, to a valid git ref.
     def payload_opts
       result = { repo: args['REPO'] }
 

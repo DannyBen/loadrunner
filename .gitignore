@@ -4,4 +4,6 @@
 /gems
 /Gemfile.lock
 /.yardoc
+/output.txt
+/handlers
 *.gem

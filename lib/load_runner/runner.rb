@@ -57,8 +57,8 @@ module LoadRunner
       handlers = ["#{base}/#{opts[:event]}"]
 
       handlers.tap do |h|
-        h << "#{base}/#{opts[:event]}@branch-#{opts[:branch]}" if opts[:branch]
-        h << "#{base}/#{opts[:event]}@tag-#{opts[:tag]}" if opts[:tag]
+        h << "#{base}/#{opts[:event]}@branch=#{opts[:branch]}" if opts[:branch]
+        h << "#{base}/#{opts[:event]}@tag=#{opts[:tag]}" if opts[:tag]
       end
     end
 
