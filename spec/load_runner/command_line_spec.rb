@@ -16,9 +16,13 @@ describe CommandLine do
   end
 
   describe "send" do
-    let(:command) { %w[send] }
+    let(:command) { %w[send my_server my_repo push] }
+    let(:response) { "Dummy response" }
 
-    it "sends a request"
+    it "sends a request" do
+      expect_any_instance_of(Client).to receive(:send).and_return(response)
+      expect {cli.execute command}.to output(/#{response}/).to_stdout
+    end
   end
 
 end

@@ -16,7 +16,7 @@ module LoadRunner
       send_payload event, payload
     end
 
-    def send_payload(event=:push, payload)
+    def send_payload(event, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
       headers = headers event
       self.class.post "/payload", body: @payload, headers: headers

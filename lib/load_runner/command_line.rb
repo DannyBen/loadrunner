@@ -35,7 +35,7 @@ module LoadRunner
       client = Client.new client_opts
       response = client.send args['EVENT'], payload_opts
 
-      puts "Reesponse code: #{response.code}"
+      puts "Reesponse code: #{response.code}" if response.respond_to? :code
       ap response
     end
 
