@@ -12,7 +12,10 @@ describe CommandLine do
   describe "server" do
     let(:command) { %w[server] }
 
-    it "starts the web server"
+    it "starts the web server" do
+      expect(Server).to receive(:run!)
+      cli.execute command
+    end
   end
 
   describe "send" do

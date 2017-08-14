@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.executables = ["loadrunner"]
   s.homepage    = 'https://github.com/DannyBen/loadrunner'
   s.license     = 'MIT'
-  s.required_ruby_version = ">= 2.2.2"
+  s.required_ruby_version = ">= 2.3.0"
 
   s.add_runtime_dependency 'httparty', '~> 0.14'
   s.add_runtime_dependency 'sinatra', '~> 2.0'
