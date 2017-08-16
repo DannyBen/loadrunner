@@ -7,6 +7,9 @@ rvm:
 notifications:
   email: false
 
+before_install:
+  - chmod -R +x spec/fixtures/handlers
+
 script: bundle exec rspec
 
 # notifications:
