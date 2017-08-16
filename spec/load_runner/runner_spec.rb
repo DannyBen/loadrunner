@@ -35,9 +35,34 @@ describe Runner do
     end
 
     context "when it finds at least one handler" do
-      it "returns true"
-      it "returns executed handlers list"
-      it "executes the handlers"
+      subject { described_class.new repo: 'myrepo', event: 'push', tag: 'production' }
+
+      before do
+        subject.handlers_dir = 'spec/fixtures/handlers'
+      end
+
+      after do
+        subject.handlers_dir = nil
+        File.delete 'secret.txt' if File.exist? 'secret.txt'
+      end
+
+      it "returns true" do
+        expect(subject.execute).to be true
+      end
+
+      it "returns executed handlers list" do
+        subject.execute
+        actual = subject.response[:executed_handlers]
+        expected = ["spec/fixtures/handlers/myrepo/push@tag=production"]
+        expect(actual).to eq expected
+      end
+
+      it "executes the handlers" do
+        File.delete 'secret.txt' if File.exist? 'secret.txt'
+        subject.execute
+        sleep 2
+        expect(File.read 'secret.txt').to eq "There is no spoon\n"
+      end
     end
 
   end

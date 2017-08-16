@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+echo "There is no spoon" > secret.txt

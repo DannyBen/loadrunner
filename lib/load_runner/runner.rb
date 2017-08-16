@@ -25,6 +25,14 @@ module LoadRunner
       end
     end
 
+    def handlers_dir
+      @handlers_dir ||= 'handlers'
+    end
+
+    def handlers_dir=(path)
+      @handlers_dir = path
+    end
+
     private
 
     def locate_handlers
@@ -53,7 +61,7 @@ module LoadRunner
     end
 
     def matching_handlers
-      base = "handlers/#{opts[:repo]}/#{opts[:event]}"
+      base = "#{handlers_dir}/#{opts[:repo]}/#{opts[:event]}"
       handlers = ["#{base}"]
 
       handlers.tap do |h|
