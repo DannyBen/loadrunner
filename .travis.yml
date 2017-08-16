@@ -8,7 +8,7 @@ notifications:
   email: false
 
 before_install:
-  - chmod 777 spec/fixtures
+  - chmod -R +x spec/fixtures/handlers
 
 script: bundle exec rspec
 
