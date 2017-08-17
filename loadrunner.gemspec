@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'byebug', '~> 9.0'
   s.add_development_dependency 'sinatra-contrib', '~> 2.0'
   s.add_development_dependency 'rack-test', '~> 0.7'
+  s.add_development_dependency 'yard', '~> 0.9'
 end

@@ -1,6 +1,8 @@
 require 'httparty'
 
 module LoadRunner
+
+  # Send simulated GitHub events to any webhook server
   class Client
     include HTTParty
     attr_accessor :secret_token, :base_url, :payload
@@ -11,11 +13,18 @@ module LoadRunner
       self.class.base_uri base_url
     end
 
+    # Send a simulated event using a shorthand syntax. opts can contain
+    # any of these:
+    #   repo: 'myrepo'
+    #   ref: 'ref/heads/branchname'
+    #   branch: 'master'
+    #   tag: 'prod'
     def send(event=:push, opts={})
       payload = build_payload opts
       send_payload event, payload
     end
 
+    # Send a simulated event. Payload can be a hash or a JSON string.
     def send_payload(event, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
       headers = headers event

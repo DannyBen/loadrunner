@@ -1,5 +1,6 @@
 module LoadRunner
 
+  # Executes event handlers
   class Runner
     attr_reader :opts
     attr_accessor :response
@@ -8,6 +9,8 @@ module LoadRunner
       @opts = opts
     end
 
+    # Execute all matching handlers based on the input payload. This method
+    # populates the `#response` object, and returns true on success.
     def execute
       set_environment_vars
       
@@ -35,6 +38,7 @@ module LoadRunner
 
     private
 
+    # Find all handlers that fit the payload meta data.
     def locate_handlers
       handlers = []
 
@@ -45,17 +49,21 @@ module LoadRunner
       handlers
     end
 
+    # Execute all handlers.
     def execute_all(handlers)
       handlers.each do |handler|
         run_bg handler
       end
     end
 
+    # Run a command in the background.
     def run_bg(cmd)
       job = fork { exec cmd }
       Process.detach job
     end
 
+    # Set all payload meta data as environment variables so that the
+    # handler can use them.
     def set_environment_vars
       opts.each { |key, value| ENV[key.to_s.upcase] = value }
     end
