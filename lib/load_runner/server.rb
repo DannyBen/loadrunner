@@ -3,6 +3,7 @@ module LoadRunner
   # The Sinatra server
   class Server < ServerBase
     include ServerHelper
+    include SignatureHelper
 
     get '/' do
       "OK"

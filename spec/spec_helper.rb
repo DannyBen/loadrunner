@@ -27,5 +27,6 @@ end
 RSpec.configure do |config|
   config.include RSpecMixin
   config.include ServerHelper
+  config.include SignatureHelper
 end
 
