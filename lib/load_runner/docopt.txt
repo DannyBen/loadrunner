@@ -3,7 +3,7 @@ LoadRunner
 Usage:
   loadrunner server [--port N --bind IP]
   loadrunner send URL REPO EVENT [REF]
-  loadrunner status STATE SHA [--context TEXT --desc TEXT --url URL]
+  loadrunner status REPO SHA STATE [--context TEXT --desc TEXT --url URL]
   loadrunner (-h|--help|--version)
 
 Commands:
@@ -73,7 +73,7 @@ Examples:
   loadrunner server --bind 0.0.0.0 --port 3000
 
   # Send a status
-  loadrunner status pending 018b0ac55dbf0d8e1eef6df46e04dfef8bea9b96
-  loadrunner status success 018... --context "My CI" --desc Testing
+  loadrunner status me/myrepo 018b0ac... pending
+  loadrunner status me/myrepo 018b0ac... success --context "My CI"
 
 

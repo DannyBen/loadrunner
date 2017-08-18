@@ -12,7 +12,7 @@ module LoadRunner
     # * +context+: any string
     # * +description+: any string
     # * +target_url+: any valid URL
-    def status(sha, opts={})
+    def status(repo, sha, opts={})
       # sha = '018b0ac55dbf0d8e1eef6df46e04dfef8bea9b96'
       message = {
         body: {
@@ -22,7 +22,7 @@ module LoadRunner
           target_url: opts[:target_url]
         }.to_json
       }
-      self.class.post "/repos/dannyben/experiments/statuses/#{sha}", message.merge(request_options)
+      self.class.post "/repos/#{repo}/statuses/#{sha}", message.merge(request_options)
     end
 
     private

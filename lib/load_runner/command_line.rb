@@ -46,10 +46,15 @@ module LoadRunner
 
     def status
       api = GitHubAPI.new
-      response = api.status args['SHA'], state: args['STATE'], 
-        target_url: args['--url'], context: args['--context'],
+      opts = {
+        state:       args['STATE'], 
+        target_url:  args['--url'], 
+        context:     args['--context'], 
         description: args['--desc']
+      }
 
+      response = api.status args['REPO'], args['SHA'], opts
+      
       show response
     end
 
@@ -78,6 +83,7 @@ module LoadRunner
     # Print the response json to stdout, and the response code to stderr.
     def show(response)
       puts JSON.pretty_generate response
+
       if response.respond_to? :code
         code = response.code.to_s
         color = code =~ /^2\d\d/ ? :txtgrn : :txtred
