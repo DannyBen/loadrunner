@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ostruct'
 
 describe CommandLine do
   let(:cli) { LoadRunner::CommandLine.clone.instance }
@@ -27,5 +28,21 @@ describe CommandLine do
       expect {cli.execute command}.to output(/#{response}/).to_stdout
     end
   end
+
+  describe "status" do
+    let(:command) { %w[status me/myrepo somesha success ] }
+    let(:response) { OpenStruct.new code: 200 }
+
+    it "prints the response to stdout" do
+      expect_any_instance_of(GitHubAPI).to receive(:status).and_return(response)
+      expect {cli.execute command}.to output(/"#<OpenStruct code=200>"/).to_stdout
+    end
+    
+    it "shows response code in stderr" do
+      expect_any_instance_of(GitHubAPI).to receive(:status).and_return(response)
+      expect {cli.execute command}.to output(/Response Code: 200/).to_stderr
+    end
+  end
+
 
 end

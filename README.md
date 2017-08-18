@@ -8,13 +8,16 @@ LoadRunner - GitHub Webhook Server and Event Simulator
 
 ---
 
-LoadRunner is a dual-purpose utility for working with GitHub webhooks.
+LoadRunner is a multi-purpose utility for working with GitHub webhooks and 
+statuses.
 
 It provides these features:
 
 - A webserver that responds to GitHub webhook events and can run any 
   arbitrary script writtn in any language.
-- A command line utility for testing your webhook server configuration.
+- A command line utility for testing your webhook server configuration by
+  sending simulated events.
+- A command line utility for sending status updates to pull requests.
 
 ---
 
@@ -43,3 +46,9 @@ Getting Started
     $ cat output.txt
 
 
+For more options, see the [documentation][1] or run
+
+    $ loadrunner --help
+
+
+[1]: http://www.rubydoc.info/gems/loadrunner
