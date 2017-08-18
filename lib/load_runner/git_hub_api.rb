@@ -35,8 +35,8 @@ module LoadRunner
 
     def headers
       {
-        "Authorization": "token #{secret_token}",
-        "User-Agent":    "LoadRunner"
+        "Authorization" => "token #{secret_token}",
+        "User-Agent" =>    "LoadRunner"
       }
     end
 

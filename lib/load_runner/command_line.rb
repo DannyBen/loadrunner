@@ -53,8 +53,6 @@ module LoadRunner
       show response
     end
 
-    private
-
     def client_opts
       {
         base_url: args['URL'], 
