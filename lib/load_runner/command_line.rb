@@ -1,12 +1,13 @@
 require 'singleton'
 require 'docopt'
-require 'awesome_print'
+require 'colsole'
 
 module LoadRunner
 
   # Handles the command line interface
   class CommandLine
     include Singleton
+    include Colsole
 
     attr_reader :args
 
@@ -28,20 +29,33 @@ module LoadRunner
     # delegate action to other, more specialized methods.
     def handle
       return send   if args['send']
+      return status if args['status']
       return server if args['server']
     end
 
     def send
       client = Client.new client_opts
       response = client.send args['EVENT'], payload_opts
-
-      puts "Reesponse code: #{response.code}" if response.respond_to? :code
-      ap response
+      show response
     end
 
     def server
       Server.prepare port: args['--port'], bind: args['--bind']
       Server.run!
+    end
+
+    def status
+      api = GitHubAPI.new
+      opts = {
+        state:       args['STATE'], 
+        target_url:  args['--url'], 
+        context:     args['--context'], 
+        description: args['--desc']
+      }
+
+      response = api.status args['REPO'], args['SHA'], opts
+      
+      show response
     end
 
     def client_opts
@@ -64,6 +78,17 @@ module LoadRunner
 
       result[:ref] = ref
       result
+    end
+
+    # Print the response json to stdout, and the response code to stderr.
+    def show(response)
+      puts JSON.pretty_generate response
+
+      if response.respond_to? :code
+        code = response.code.to_s
+        color = code =~ /^2\d\d/ ? :txtgrn : :txtred
+        say! "!#{color}!Response Code: #{code}"
+      end
     end
   end
 end
