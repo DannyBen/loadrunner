@@ -15,10 +15,10 @@ module LoadRunner
 
     # Send a simulated event using a shorthand syntax. opts can contain
     # any of these:
-    #   repo: 'myrepo'
-    #   ref: 'ref/heads/branchname'
-    #   branch: 'master'
-    #   tag: 'prod'
+    # * +repo+: repository name
+    # * +ref+: ref ID (for example +ref/heads/branchname+)
+    # * +branch+: branch name
+    # * +tag+: tag name
     def send(event=:push, opts={})
       payload = build_payload opts
       send_payload event, payload

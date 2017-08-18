@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sinatra', '~> 2.0'
   s.add_runtime_dependency 'puma', '~> 3.9'
   s.add_runtime_dependency 'activesupport', '~> 5.1'
-  s.add_runtime_dependency 'awesome_print', '~> 1.8'
+  s.add_runtime_dependency 'colsole', '~> 0.5'
   
   s.add_development_dependency 'runfile', '~> 0.10'
   s.add_development_dependency 'runfile-tasks', '~> 0.4'

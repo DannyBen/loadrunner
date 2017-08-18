@@ -3,6 +3,7 @@ LoadRunner
 Usage:
   loadrunner server [--port N --bind IP]
   loadrunner send URL REPO EVENT [REF]
+  loadrunner status STATE SHA [--context TEXT --desc TEXT --url URL]
   loadrunner (-h|--help|--version)
 
 Commands:
@@ -11,6 +12,9 @@ Commands:
 
   send
     Send a simulated GitHub event to a webhook server.
+
+  status
+    Send status update to a github pull request.
 
 Parameters:
   URL
@@ -31,6 +35,12 @@ Parameters:
     * branch=branch_name
     * raw ref string (for example refs/tags/tagname)
 
+  SHA
+    Commit SHA string.
+
+  STATE
+    One of 'success', 'pending', 'error', 'failure'
+
 Options:
   --port N
     Set the port of the webhook server.
@@ -38,6 +48,14 @@ Options:
   --bind IP
     Set the listening address of the webhook server.
 
+  --context TEXT
+    Indicate what service is sending this status.
+
+  --url URL
+    The target URL to associate with this status.
+
+  --desc TEXT
+    A short description of the status.
 
 Environment Variables:
   GITHUB_SECRET_TOKEN=y0urAP1k3y
@@ -53,5 +71,9 @@ Examples:
   # Start the server
   loadrunner server
   loadrunner server --bind 0.0.0.0 --port 3000
+
+  # Send a status
+  loadrunner status pending 018b0ac55dbf0d8e1eef6df46e04dfef8bea9b96
+  loadrunner status success 018... --context "My CI" --desc Testing
 
 
