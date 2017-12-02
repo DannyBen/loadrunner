@@ -3,7 +3,8 @@ LoadRunner - GitHub Webhook Server and Event Simulator
 
 [![Gem](https://img.shields.io/gem/v/loadrunner.svg?style=flat-square)](https://rubygems.org/gems/loadrunner)
 [![Travis](https://img.shields.io/travis/DannyBen/loadrunner.svg?style=flat-square)](https://travis-ci.org/DannyBen/loadrunner)
-[![Code Climate](https://img.shields.io/codeclimate/github/DannyBen/loadrunner.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/loadrunner)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/DannyBen/loadrunner.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/loadrunner)
+[![Issues](https://img.shields.io/codeclimate/issues/github/DannyBen/loadrunner.svg?style=flat-square)](https://codeclimate.com/github/DannyBen/loadrunner)
 [![Gemnasium](https://img.shields.io/gemnasium/DannyBen/loadrunner.svg?style=flat-square)](https://gemnasium.com/DannyBen/loadrunner)
 
 ---
