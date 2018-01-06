@@ -15,7 +15,7 @@ statuses.
 It provides these features:
 
 - A webserver that responds to GitHub webhook events and can run any 
-  arbitrary script writtn in any language.
+  arbitrary script written in any language.
 - A command line utility for testing your webhook server configuration by
   sending simulated events.
 - A command line utility for sending status updates to pull requests.
@@ -36,6 +36,7 @@ Getting Started
     $ mkdir -p handlers/myrepo
     $ echo "#\!/usr/bin/env bash" > handlers/myrepo/push
     $ echo "echo hello > output.txt" >> handlers/myrepo/push
+    $ chmod +x handlers/myrepo/push
 
     # Start the server
     $ loadrunner server
