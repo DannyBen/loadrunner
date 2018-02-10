@@ -19,7 +19,7 @@ module LoadRunner
     # * +ref+: ref ID (for example +ref/heads/branchname+)
     # * +branch+: branch name
     # * +tag+: tag name
-    def send(event=:push, opts={})
+    def send_event(event=:push, opts={})
       payload = build_payload opts
       send_payload event, payload
     end
