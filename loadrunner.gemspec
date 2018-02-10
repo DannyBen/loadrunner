@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.required_ruby_version = ">= 2.3.0"
 
+  s.add_runtime_dependency 'super_docopt', '~> 0.1'
   s.add_runtime_dependency 'httparty', '~> 0.14'
   s.add_runtime_dependency 'sinatra', '~> 2.0'
   s.add_runtime_dependency 'puma', '~> 3.9'

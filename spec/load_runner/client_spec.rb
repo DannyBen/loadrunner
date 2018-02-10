@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Client do
-  describe "#send" do
+  describe "#send_event" do
     context "without arguments" do
       let(:payload) { {:ref=>nil, :repository=>{:name=>nil}} }
 
       it "builds and sends a payload" do
         expect(subject).to receive(:send_payload).with(:push, payload)
-        subject.send
+        subject.send_event
       end
     end
 
@@ -16,7 +16,7 @@ describe Client do
 
       it "builds and sends a payload" do
         expect(subject).to receive(:send_payload).with(:ping, payload)
-        subject.send :ping, ref: 'refs/heads/test', repo: 'myrepo'
+        subject.send_event :ping, ref: 'refs/heads/test', repo: 'myrepo'
       end
     end
 
@@ -24,7 +24,7 @@ describe Client do
       it "converts it to ref" do
         expected = { ref: "refs/heads/branchy" }
         expect(subject).to receive(:send_payload).with(anything, hash_including(expected))
-        subject.send(:push, branch: 'branchy')
+        subject.send_event :push, branch: 'branchy'
       end
     end
 
@@ -32,7 +32,7 @@ describe Client do
       it "converts it to ref" do
         expected = { ref: "refs/tags/tagly" }
         expect(subject).to receive(:send_payload).with(anything, hash_including(expected))
-        subject.send(:push, tag: 'tagly')
+        subject.send_event :push, tag: 'tagly'
       end
     end
 
@@ -40,12 +40,9 @@ describe Client do
       it "extracts its short name" do
         expected = { repository: { name: "myrepo", full_name: 'me/myrepo' } }
         expect(subject).to receive(:send_payload).with(anything, hash_including(expected))
-        subject.send(:push, repo: 'me/myrepo')
+        subject.send_event :push, repo: 'me/myrepo'
       end
     end
-
-
-
   end
 
   describe "#send_payload" do

@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ostruct'
 
 describe CommandLine do
-  let(:cli) { LoadRunner::CommandLine.clone.instance }
+  let(:cli) { LoadRunner::CommandLine }
 
   describe "without arguments" do
     it "shows usage patterns" do
@@ -24,7 +24,7 @@ describe CommandLine do
     let(:response) { "Dummy response" }
 
     it "sends a request" do
-      expect_any_instance_of(Client).to receive(:send).and_return(response)
+      expect_any_instance_of(Client).to receive(:send_event).and_return(response)
       expect {cli.execute command}.to output(/#{response}/).to_stdout
     end
   end

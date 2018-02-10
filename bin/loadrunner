@@ -3,7 +3,7 @@
 require 'loadrunner'
 
 begin
-  LoadRunner::CommandLine.instance.execute ARGV
+  LoadRunner::CommandLine.execute ARGV
 rescue => e
   STDERR.puts "#{e.class} - #{e.message}"
 end

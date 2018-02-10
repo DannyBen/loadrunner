@@ -1,41 +1,19 @@
-require 'singleton'
-require 'docopt'
+require 'super_docopt'
 require 'colsole'
 
 module LoadRunner
 
   # Handles the command line interface
-  class CommandLine
-    include Singleton
+  class CommandLine < SuperDocopt::Base
     include Colsole
 
-    attr_reader :args
+    version VERSION
+    docopt File.expand_path 'docopt.txt', __dir__
+    subcommands [{'send' => 'send_event'}, 'status', 'server']
 
-    # Gets an array of arguments (e.g. ARGV), executes the command if valid
-    # and shows usage patterns / help otherwise.
-    def execute(argv=[])
-      doc = File.read File.dirname(__FILE__) + '/docopt.txt'
-      begin
-        @args = Docopt::docopt(doc, argv: argv, version: VERSION)
-        handle
-      rescue Docopt::Exit => e
-        puts e.message
-      end
-    end
-
-    private
-
-    # Called when the arguments match one of the usage patterns. Will 
-    # delegate action to other, more specialized methods.
-    def handle
-      return send   if args['send']
-      return status if args['status']
-      return server if args['server']
-    end
-
-    def send
+    def send_event
       client = Client.new client_opts
-      response = client.send args['EVENT'], payload_opts
+      response = client.send_event args['EVENT'], payload_opts
       show response
     end
 
@@ -57,6 +35,8 @@ module LoadRunner
       
       show response
     end
+
+    private
 
     def client_opts
       {
