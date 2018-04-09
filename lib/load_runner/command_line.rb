@@ -62,7 +62,7 @@ module LoadRunner
 
     # Print the response json to stdout, and the response code to stderr.
     def show(response)
-      puts JSON.pretty_generate response
+      puts JSON.pretty_generate(JSON.parse response.to_s)
 
       if response.respond_to? :code
         code = response.code.to_s
