@@ -58,8 +58,11 @@ Options:
     A short description of the status.
 
 Environment Variables:
-  GITHUB_ACCESS_TOKEN=y0urAP1k3y
-    Set Your GitHub secret token.
+  GITHUB_SECRET_TOKEN=y0urk3y
+    Set Your GitHub secret token as set in your webhook.
+  
+  GITHUB_ACCESS_TOKEN=y0urAPIk3y
+    Set Your GitHub API token (needed only for status updates).
 
 Examples:
   # Simulate push events
