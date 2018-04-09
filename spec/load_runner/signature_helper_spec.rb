@@ -4,7 +4,7 @@ describe SignatureHelper do
   describe "#verify_signature" do
     let(:payload) { {sample: 'payload'}.to_json }
 
-    context "without GITHUB_SECRET_TOKEN" do
+    context "without GITHUB_ACCESS_TOKEN" do
       context "without signature" do
         let(:signature) { nil }
 
@@ -22,13 +22,13 @@ describe SignatureHelper do
       end
     end
 
-    context "with GITHUB_SECRET_TOKEN" do
+    context "with GITHUB_ACCESS_TOKEN" do
       before do
-        ENV['GITHUB_SECRET_TOKEN'] = '123'
+        ENV['GITHUB_ACCESS_TOKEN'] = '123'
       end
 
       after do
-        ENV['GITHUB_SECRET_TOKEN'] = nil
+        ENV['GITHUB_ACCESS_TOKEN'] = nil
       end
 
       context "without signature" do

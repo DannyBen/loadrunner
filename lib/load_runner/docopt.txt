@@ -58,7 +58,7 @@ Options:
     A short description of the status.
 
 Environment Variables:
-  GITHUB_SECRET_TOKEN=y0urAP1k3y
+  GITHUB_ACCESS_TOKEN=y0urAP1k3y
     Set Your GitHub secret token.
 
 Examples:

@@ -15,7 +15,7 @@ module LoadRunner
     end
 
     def secret_token
-      ENV['GITHUB_SECRET_TOKEN']
+      ENV['GITHUB_ACCESS_TOKEN']
     end
   end
 end

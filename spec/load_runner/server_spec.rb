@@ -10,18 +10,24 @@ describe Server do
   describe "/payload" do
     let(:payload) { {key: 'value'}.to_json }
 
-    it "executes the runner" do
-      expect_any_instance_of(Runner).to receive(:execute)
-      post '/payload', payload
+    context "when a signature is not required" do
+      before do
+        ENV['GITHUB_ACCESS_TOKEN'] = nil
+      end
+
+      it "executes the runner" do
+        expect_any_instance_of(Runner).to receive(:execute)
+        post '/payload', payload
+      end
     end
 
     context "when a signature is required" do
       before do
-        ENV['GITHUB_SECRET_TOKEN'] = '123'
+        ENV['GITHUB_ACCESS_TOKEN'] = '123'
       end
 
       after do
-        ENV['GITHUB_SECRET_TOKEN'] = nil
+        ENV['GITHUB_ACCESS_TOKEN'] = nil
       end
 
       it "halts with 401" do
