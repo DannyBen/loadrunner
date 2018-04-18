@@ -13,7 +13,9 @@ module LoadRunner
     set :server, :puma
 
     configure :development do
+      # :nocov: - this is not covered in CI, but is covered in dev
       register Sinatra::Reloader if defined? Sinatra::Reloader
+      # :nocov:
     end
 
     # Since we cannot use any config values in the main body of the class,
