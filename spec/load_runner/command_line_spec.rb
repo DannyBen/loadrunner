@@ -35,14 +35,7 @@ describe CommandLine do
 
     it "prints the response to stdout" do
       expect_any_instance_of(GitHubAPI).to receive(:status).and_return(response)
-      expect {cli.execute command}.to output(/"#<OpenStruct code=200>"/).to_stdout
-    end
-    
-    it "shows response code in stderr" do
-      expect_any_instance_of(GitHubAPI).to receive(:status).and_return(response)
-      expect {cli.execute command}.to output(/Response Code: 200/).to_stderr
+      expect { cli.execute command }.to output(/#<OpenStruct code=200>.*Response Code: 200/m).to_stdout
     end
   end
-
-
 end

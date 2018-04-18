@@ -15,7 +15,7 @@ module LoadRunner
 
       signature = request.env['HTTP_X_HUB_SIGNATURE']
       state = verify_signature payload_body, signature
-      
+
       halt 401, halt_messages[state] if state != :ok
 
       push = ActiveSupport::HashWithIndifferentAccess.new JSON.parse payload_body
