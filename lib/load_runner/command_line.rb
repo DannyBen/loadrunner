@@ -32,7 +32,7 @@ module LoadRunner
       }
 
       response = api.status args['REPO'], args['SHA'], opts
-      
+
       show response
     end
 
@@ -62,13 +62,19 @@ module LoadRunner
 
     # Print the response json to stdout, and the response code to stderr.
     def show(response)
-      puts JSON.pretty_generate(JSON.parse response.to_s)
+      puts json_generate(response)
 
       if response.respond_to? :code
         code = response.code.to_s
         color = code =~ /^2\d\d/ ? :txtgrn : :txtred
-        say! "!#{color}!Response Code: #{code}"
+        say "!#{color}!Response Code: #{code}"
       end
+    end
+
+    def json_generate(object)
+      JSON.pretty_generate(JSON.parse object.to_s)
+    rescue
+      object.to_s
     end
   end
 end
