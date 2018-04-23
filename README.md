@@ -52,4 +52,21 @@ For more options, see the [documentation][1] or run
     $ loadrunner --help
 
 
+Running with Docker
+--------------------------------------------------
+
+You can run both the server and the client using Docker.
+
+    # Server
+    $ docker run -p3000:3000 dannyben/loadrunner server
+
+    # Client
+    $ docker run dannyben/loadrunner send http://webhook.server.com/payload repo push
+
+If you wish to connect the client to the server you are running through Docker, 
+you can do something like this:
+
+    $ docker run --network host dannyben/loadrunner send http://localhost:3000/payload repo push
+
+
 [1]: http://www.rubydoc.info/gems/loadrunner
