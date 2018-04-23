@@ -51,7 +51,7 @@ module LoadRunner
     def payload_opts
       result = { repo: args['REPO'] }
 
-      ref = args['REF']
+      ref = args['REF'] || 'master'
       ref = "refs/tags/#{$1}" if ref =~ /^tag=(.+)/
       ref = "refs/heads/#{$1}" if ref =~ /^branch=(.+)/
       ref = "refs/heads/#{ref}" if ref !~ /^refs/

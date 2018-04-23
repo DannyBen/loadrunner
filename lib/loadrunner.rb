@@ -11,3 +11,5 @@ require 'load_runner/server'
 require 'load_runner/client'
 
 require 'load_runner/command_line'
+
+require 'byebug' if ENV['BYEBUG']

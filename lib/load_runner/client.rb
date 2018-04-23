@@ -9,7 +9,7 @@ module LoadRunner
     
     def initialize(opts={})
       @secret_token = opts[:secret_token]
-      @base_url = opts[:base_url] || 'localhost:3000'
+      @base_url = opts[:base_url] || 'localhost:3000/payload'
       self.class.base_uri base_url
     end
 
@@ -28,7 +28,7 @@ module LoadRunner
     def send_payload(event, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
       headers = headers event
-      self.class.post "/payload", body: @payload, headers: headers
+      self.class.post "", body: @payload, headers: headers
     end
 
     private
