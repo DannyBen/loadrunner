@@ -54,9 +54,20 @@ describe Client do
     end
 
     it "converts payload to json" do
-      expected = { body: payload.to_json, headers: { "X_GITHUB_EVENT"=>"push" } }
+      expected = { body: payload.to_json, headers: { "X_GITHUB_EVENT"=>"push",  "Content-Type"=>"application/json" } }
       expect(described_class).to receive(:post).with(anything, expected)
       subject.send_payload(:push, payload)
+    end
+
+    context "when form encoding is requested" do
+      subject { described_class.new encoding: :form }
+
+      it "converts payload to x-www-form-urlencoded" do
+        body = URI.encode_www_form({ payload: payload.to_json })
+        expected = { body: body, headers: { "X_GITHUB_EVENT"=>"push",  "Content-Type"=>"application/x-www-form-urlencoded" } }
+        expect(described_class).to receive(:post).with(anything, expected)
+        subject.send_payload(:push, payload)
+      end      
     end
 
     context "when secret_token is set" do
@@ -68,7 +79,8 @@ describe Client do
         expected = { 
           headers: { 
             "X_GITHUB_EVENT"  => "push",
-            "X_HUB_SIGNATURE" => "sha1=f2d099c2ff67f1f52e1a0b9e8445306e1d30e6e4"
+            "X_HUB_SIGNATURE" => "sha1=f2d099c2ff67f1f52e1a0b9e8445306e1d30e6e4",
+            "Content-Type"=>"application/json"
           },
         }
         expect(described_class).to receive(:post).with(anything, hash_including(expected))

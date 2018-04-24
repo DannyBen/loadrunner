@@ -2,7 +2,7 @@ LoadRunner
 
 Usage:
   loadrunner server [--port N --bind IP]
-  loadrunner send URL REPO EVENT [REF]
+  loadrunner send URL REPO EVENT [REF --form]
   loadrunner status REPO SHA STATE [--context TEXT --desc TEXT --url URL]
   loadrunner (-h|--help|--version)
 
@@ -18,8 +18,9 @@ Commands:
 
 Parameters:
   URL
-    The URL of the webhook server. This server should have a /payload
-    endpoint that responds to POST requests.
+    The URL of the webhook endpoint. This path should responds
+    to POST requests. If you are sending an event to a loadrunner server,
+    send it to the /payload endpoint (e.g. localhost:3000/payload).
 
   REPO
     The name of the repository. This can be either the short name 
@@ -57,6 +58,9 @@ Options:
   --desc TEXT
     A short description of the status.
 
+  --form
+    Send request as x-www-form-urlencoded instead of sending JSON.
+
 Environment Variables:
   GITHUB_SECRET_TOKEN=y0urk3y
     Set Your GitHub secret token as set in your webhook.
@@ -68,7 +72,7 @@ Examples:
   # Simulate push events
   loadrunner send localhost:3000/payload my_repo push master
   loadrunner send localhost:3000/payload my_repo push branch=master
-  loadrunner send localhost:3000/payload my_repo push tag=staging
+  loadrunner send localhost:3000/payload my_repo push tag=staging --form
   loadrunner send localhost:3000/payload my_repo push refs/tags/staging
 
   # Start the server
