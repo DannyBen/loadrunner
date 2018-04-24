@@ -1,15 +1,17 @@
 require 'httparty'
+require 'uri'
 
 module LoadRunner
 
   # Send simulated GitHub events to any webhook server
   class Client
     include HTTParty
-    attr_accessor :secret_token, :base_url, :payload
+    attr_accessor :secret_token, :base_url, :payload, :encoding
     
     def initialize(opts={})
       @secret_token = opts[:secret_token]
       @base_url = opts[:base_url] || 'localhost:3000/payload'
+      @encoding = opts[:encoding] || :json
       self.class.base_uri base_url
     end
 
@@ -27,8 +29,8 @@ module LoadRunner
     # Send a simulated event. Payload can be a hash or a JSON string.
     def send_payload(event, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
-      headers = headers event
-      self.class.post "", body: @payload, headers: headers
+      @payload = URI.encode_www_form(payload: @payload) if encoding == :form
+      self.class.post "", body: @payload, headers: headers(event)
     end
 
     private
@@ -37,6 +39,7 @@ module LoadRunner
       {}.tap do |header|
         header['X_GITHUB_EVENT'] = event.to_s if event
         header['X_HUB_SIGNATURE'] = signature if secret_token
+        header['Content-Type'] = content_type[encoding]
       end
     end
 
@@ -69,6 +72,13 @@ module LoadRunner
       else 
         { name: opts[:repo] }
       end
+    end
+
+    def content_type
+      {
+        json: 'application/json',
+        form: 'application/x-www-form-urlencoded',
+      }
     end
 
   end

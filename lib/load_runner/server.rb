@@ -18,7 +18,12 @@ module LoadRunner
 
       halt 401, halt_messages[state] if state != :ok
 
-      push = ActiveSupport::HashWithIndifferentAccess.new JSON.parse payload_body
+      if request.content_type == 'application/json'
+        json_string = payload_body
+      else
+        json_string = URI.decode_www_form(payload_body).to_h["payload"]
+      end
+      push = ActiveSupport::HashWithIndifferentAccess.new JSON.parse json_string
 
       opts = {}
       opts[:repo]   = push.dig(:repository, :name)

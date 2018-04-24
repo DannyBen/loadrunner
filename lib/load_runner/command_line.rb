@@ -41,7 +41,8 @@ module LoadRunner
     def client_opts
       {
         base_url: args['URL'], 
-        secret_token: ENV['GITHUB_SECRET_TOKEN']
+        secret_token: ENV['GITHUB_SECRET_TOKEN'],
+        encoding: args['--form'] ? :form : :json
       }
     end
 
