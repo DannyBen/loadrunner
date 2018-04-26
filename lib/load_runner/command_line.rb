@@ -9,11 +9,21 @@ module LoadRunner
 
     version VERSION
     docopt File.expand_path 'docopt.txt', __dir__
-    subcommands [{'send' => 'send_event'}, 'status', 'server']
+    subcommands [:event, :payload, :status, :server]
 
-    def send_event
+    def event
       client = Client.new client_opts
       response = client.send_event args['EVENT'], payload_opts
+      show response
+    end
+
+    def payload
+      client = Client.new client_opts
+      file = args['FILE']
+      raise ArgumentError, "File not found: #{file}" unless File.exist? file
+
+      json = File.read file
+      response = client.send_payload args['EVENT'], json
       show response
     end
 
