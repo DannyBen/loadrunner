@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    command: server
+
+    ports: ["3000:3000"]
+
+    environment:
+      RACK_ENV: production
+      GITHUB_SECRET_TOKEN:
+
+    volumes:
+      - ./handlers:/app/handlers
+
+  event:
+    build: .
+    command: event server:3000/payload myrepo push
+
+    environment:
+      GITHUB_SECRET_TOKEN:

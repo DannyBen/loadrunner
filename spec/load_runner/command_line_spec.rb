@@ -19,13 +19,33 @@ describe CommandLine do
     end
   end
 
-  describe "send" do
-    let(:command) { %w[send my_server my_repo push] }
+  describe "event" do
+    let(:command) { %w[event my_server my_repo push] }
     let(:response) { "Dummy response" }
 
     it "sends a request" do
       expect_any_instance_of(Client).to receive(:send_event).and_return(response)
       expect {cli.execute command}.to output(/#{response}/).to_stdout
+    end
+  end
+
+  describe "payload" do
+    let(:file) { 'spec/fixtures/payload.json' }
+    let(:command) { %W[payload my_server push #{file}] }
+    let(:response) { "Dummy response" }
+    let(:json) { File.read file }
+
+    it "sends a request" do
+      expect_any_instance_of(Client).to receive(:send_payload).with('push', json).and_return(response)
+      expect {cli.execute command}.to output(/#{response}/).to_stdout
+    end
+
+    context "with an invalid file" do
+      let(:file) { 'no-such-file.json' }
+
+      it "raises ArgumentError" do
+        expect {cli.execute command}.to raise_error(ArgumentError)
+      end
     end
   end
 

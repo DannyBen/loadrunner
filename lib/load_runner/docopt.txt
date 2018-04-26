@@ -2,7 +2,8 @@ LoadRunner
 
 Usage:
   loadrunner server [--port N --bind IP]
-  loadrunner send URL REPO EVENT [REF --form]
+  loadrunner event URL REPO EVENT [REF --form]
+  loadrunner payload URL EVENT FILE [--form]
   loadrunner status REPO SHA STATE [--context TEXT --desc TEXT --url URL]
   loadrunner (-h|--help|--version)
 
@@ -10,8 +11,14 @@ Commands:
   server
     Start the webhook server.
 
-  send
-    Send a simulated GitHub event to a webhook server.
+  event
+    Send a simulated GitHub event to a webhook server. This will send a 
+    simplified payload, with minimal properties and is intended for testing
+    of the loadrunner server.
+
+  payload
+    Send a JSON payload file to a webhook server. To obtain a proper 
+    payload, you can copy one from your GitHub webhooks page.
 
   status
     Send status update to a github pull request.
@@ -28,6 +35,9 @@ Parameters:
 
   EVENT
     Any GitHub event, for example: push or ping.
+
+  FILE
+    A payload JSON file.
 
   REF
     A branch or tag specifier. This parameter supports four formats:
@@ -70,10 +80,13 @@ Environment Variables:
 
 Examples:
   # Simulate push events
-  loadrunner send localhost:3000/payload my_repo push master
-  loadrunner send localhost:3000/payload my_repo push branch=master
-  loadrunner send localhost:3000/payload my_repo push tag=staging --form
-  loadrunner send localhost:3000/payload my_repo push refs/tags/staging
+  loadrunner event localhost:3000/payload my_repo push master
+  loadrunner event localhost:3000/payload my_repo push branch=master
+  loadrunner event localhost:3000/payload my_repo push tag=staging --form
+  loadrunner event localhost:3000/payload my_repo push refs/tags/staging
+
+  # Send a payload file
+  loadrunner payload localhost:3000/payload payload.json
 
   # Start the server
   loadrunner server

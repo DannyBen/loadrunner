@@ -41,7 +41,7 @@ Getting Started
     $ loadrunner server
 
     # In another terminal, send a sample webhook event
-    $ loadrunner send localhost:3000 myrepo push master
+    $ loadrunner event localhost:3000 myrepo push master
 
     # Verify the handler was executed
     $ cat output.txt
@@ -61,12 +61,13 @@ You can run both the server and the client using Docker.
     $ docker run -p3000:3000 dannyben/loadrunner server
 
     # Client
-    $ docker run dannyben/loadrunner send http://webhook.server.com/payload repo push
+    $ docker run dannyben/loadrunner event http://webhook.server.com/payload repo push
 
 If you wish to connect the client to the server you are running through Docker, 
 you can do something like this:
 
-    $ docker run --network host dannyben/loadrunner send http://localhost:3000/payload repo push
+    $ docker run --network host dannyben/loadrunner event http://localhost:3000/payload repo push
 
+See also: The [docker-compose file](docker-compose.yml).
 
 [1]: http://www.rubydoc.info/gems/loadrunner

@@ -49,12 +49,12 @@ describe Client do
     let(:payload) { {ref: 'refs/heads/test', repository: {name: 'myrepo'}} }
     
     it "sends a post http message" do
-      expect(described_class).to receive(:post).with('', any_args)
+      expect(described_class).to receive(:post).with('/payload', any_args)
       subject.send_payload(:push, payload)
     end
 
     it "converts payload to json" do
-      expected = { body: payload.to_json, headers: { "X_GITHUB_EVENT"=>"push",  "Content-Type"=>"application/json" } }
+      expected = { body: payload.to_json, headers: { "X-GitHub-Event"=>"push",  "Content-Type"=>"application/json" } }
       expect(described_class).to receive(:post).with(anything, expected)
       subject.send_payload(:push, payload)
     end
@@ -64,7 +64,7 @@ describe Client do
 
       it "converts payload to x-www-form-urlencoded" do
         body = URI.encode_www_form({ payload: payload.to_json })
-        expected = { body: body, headers: { "X_GITHUB_EVENT"=>"push",  "Content-Type"=>"application/x-www-form-urlencoded" } }
+        expected = { body: body, headers: { "X-GitHub-Event"=>"push",  "Content-Type"=>"application/x-www-form-urlencoded" } }
         expect(described_class).to receive(:post).with(anything, expected)
         subject.send_payload(:push, payload)
       end      
@@ -78,8 +78,8 @@ describe Client do
       it "sends a signature in the header" do
         expected = { 
           headers: { 
-            "X_GITHUB_EVENT"  => "push",
-            "X_HUB_SIGNATURE" => "sha1=f2d099c2ff67f1f52e1a0b9e8445306e1d30e6e4",
+            "X-GitHub-Event"  => "push",
+            "X-Hub-Signature" => "sha1=f2d099c2ff67f1f52e1a0b9e8445306e1d30e6e4",
             "Content-Type"=>"application/json"
           },
         }

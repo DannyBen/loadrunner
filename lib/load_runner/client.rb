@@ -6,13 +6,22 @@ module LoadRunner
   # Send simulated GitHub events to any webhook server
   class Client
     include HTTParty
-    attr_accessor :secret_token, :base_url, :payload, :encoding
+    attr_accessor :secret_token, :host, :host_path, :payload, :encoding
     
     def initialize(opts={})
       @secret_token = opts[:secret_token]
-      @base_url = opts[:base_url] || 'localhost:3000/payload'
       @encoding = opts[:encoding] || :json
-      self.class.base_uri base_url
+
+      base_url = opts[:base_url] || 'http://localhost:3000/payload'
+      base_url = "http://#{base_url}" unless base_url =~ /^http/
+
+      url_parts = URI.parse base_url
+      @host_path = url_parts.path
+      url_parts.path = ''
+
+      @host = url_parts.to_s
+
+      self.class.base_uri host
     end
 
     # Send a simulated event using a shorthand syntax. opts can contain
@@ -30,15 +39,15 @@ module LoadRunner
     def send_payload(event, payload)
       @payload = payload.is_a?(String) ? payload : payload.to_json
       @payload = URI.encode_www_form(payload: @payload) if encoding == :form
-      self.class.post "", body: @payload, headers: headers(event)
+      self.class.post host_path, body: @payload, headers: headers(event)
     end
 
     private
 
     def headers(event=:push)
       {}.tap do |header|
-        header['X_GITHUB_EVENT'] = event.to_s if event
-        header['X_HUB_SIGNATURE'] = signature if secret_token
+        header['X-GitHub-Event'] = event.to_s if event
+        header['X-Hub-Signature'] = signature if secret_token
         header['Content-Type'] = content_type[encoding]
       end
     end
