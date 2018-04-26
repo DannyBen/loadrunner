@@ -86,7 +86,7 @@ Examples:
   loadrunner event localhost:3000/payload my_repo push refs/tags/staging
 
   # Send a payload file
-  loadrunner payload localhost:3000/payload payload.json
+  loadrunner payload localhost:3000/payload push payload.json
 
   # Start the server
   loadrunner server
