@@ -2,7 +2,7 @@ LoadRunner - GitHub Webhook Server and Event Simulator
 ======================================================
 
 [![Gem Version](https://badge.fury.io/rb/loadrunner.svg)](https://badge.fury.io/rb/loadrunner)
-[![Build Status](https://travis-ci.org/DannyBen/loadrunner.svg?branch=master)](https://travis-ci.org/DannyBen/loadrunner)
+[![Build Status](https://travis-ci.com/DannyBen/loadrunner.svg?branch=master)](https://travis-ci.com/DannyBen/loadrunner)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f1aae46eaf6365ea2ec7/maintainability)](https://codeclimate.com/github/DannyBen/loadrunner/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f1aae46eaf6365ea2ec7/test_coverage)](https://codeclimate.com/github/DannyBen/loadrunner/test_coverage)
 
