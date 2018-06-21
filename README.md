@@ -21,6 +21,8 @@ It provides these features:
 
 ---
 
+
+
 Install
 --------------------------------------------------
 
@@ -28,28 +30,71 @@ Install
 $ gem install loadrunner
 ```
 
+
+
 Getting Started
 --------------------------------------------------
 
-    # Create a sample hook handler
-    $ mkdir -p handlers/myrepo
-    $ echo "#\!/usr/bin/env bash" > handlers/myrepo/push
-    $ echo "echo hello > output.txt" >> handlers/myrepo/push
-    $ chmod +x handlers/myrepo/push
+```shell
+# Create a sample hook handler
+$ mkdir -p handlers/myrepo
+$ echo '#!/usr/bin/env bash' > handlers/myrepo/push
+$ echo 'echo hello > output.txt' >> handlers/myrepo/push
+$ chmod +x handlers/myrepo/push
 
-    # Start the server
-    $ loadrunner server
+# Start the server
+$ loadrunner server
 
-    # In another terminal, send a sample webhook event
-    $ loadrunner event localhost:3000 myrepo push master
+# In another terminal, send a sample webhook event
+$ loadrunner event localhost:3000 myrepo push master
 
-    # Verify the handler was executed
-    $ cat output.txt
+# Verify the handler was executed
+$ cat output.txt
+```
 
 
 For more options, see the [documentation][1] or run
 
-    $ loadrunner --help
+```shell
+$ loadrunner --help
+```
+
+
+
+Building Handlers
+--------------------------------------------------
+
+When running the server, it will look for handlers in the `./handlers` 
+directory, using one of these format:
+
+    handlers/<repo name>/<event type>
+    handlers/<repo name>/<event type>@branch=<branch name>
+    handlers/<repo name>/<event type>@tag=<branch name>
+
+For example:
+
+    handlers/myrepo/push
+    handlers/myrepo/push@branch=master
+    handlers/myrepo/push@tag=release
+
+When none of the handlers are found, LoadRunner will respond with a list of
+handlers it was looking for, so you can use this response to figure out what
+it needs.
+
+The handlers can be written in any language, and should simply be 
+executables.
+
+### Environment Variables
+
+These environment variables are available to your handlers:
+
+- `REPO`
+- `EVENT`
+- `BRANCH`
+- `REF`
+- `TAG`
+- `PAYLOAD` - the entire JSON string as received from GitHub, or the client.
+
 
 
 Running with Docker
