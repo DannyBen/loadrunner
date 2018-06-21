@@ -23,13 +23,14 @@ module LoadRunner
       else
         json_string = URI.decode_www_form(payload_body).to_h["payload"]
       end
-      push = ActiveSupport::HashWithIndifferentAccess.new JSON.parse json_string
+      payload = ActiveSupport::HashWithIndifferentAccess.new JSON.parse json_string
 
       opts = {}
-      opts[:repo]   = push.dig(:repository, :name)
-      opts[:event]  = request.env['HTTP_X_GITHUB_EVENT']
-      opts[:branch] = push[:ref].sub('refs/heads/', '') if push[:ref] =~ /refs\/heads/
-      opts[:tag]    = push[:ref].sub('refs/tags/', '') if push[:ref] =~ /refs\/tags/
+      opts[:repo]    = payload.dig(:repository, :name)
+      opts[:event]   = request.env['HTTP_X_GITHUB_EVENT']
+      opts[:branch]  = payload[:ref].sub('refs/heads/', '') if payload[:ref] =~ /refs\/heads/
+      opts[:tag]     = payload[:ref].sub('refs/tags/', '') if payload[:ref] =~ /refs\/tags/
+      opts[:payload] = json_string
 
       runner = Runner.new opts
       success = runner.execute
