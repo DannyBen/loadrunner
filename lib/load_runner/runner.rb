@@ -3,9 +3,10 @@ module LoadRunner
   # Executes event handlers
   class Runner
     attr_reader :opts
-    attr_accessor :response
+    attr_accessor :response, :handlers_dir
 
     def initialize(opts)
+      @handlers_dir = 'handlers'
       @opts = opts
     end
 
@@ -13,12 +14,12 @@ module LoadRunner
     # populates the `#response` object, and returns true on success.
     def execute
       set_environment_vars
-      
+
       @response = opts.dup
       handlers = locate_handlers
+      @response[:matching_handlers] = matching_handlers
 
       if handlers.empty?
-        @response[:matching_handlers] = matching_handlers
         @response[:error] = "Could not find any handler to process this webhook. Please implement one of the 'matching_handlers'."
         return false
       else
@@ -26,14 +27,6 @@ module LoadRunner
         @response[:executed_handlers] = handlers
         return true
       end
-    end
-
-    def handlers_dir
-      @handlers_dir ||= 'handlers'
-    end
-
-    def handlers_dir=(path)
-      @handlers_dir = path
     end
 
     private
@@ -65,12 +58,16 @@ module LoadRunner
     # Set all payload meta data as environment variables so that the
     # handler can use them.
     def set_environment_vars
-      opts.each { |key, value| ENV[key.to_s.upcase] = value }
+      opts.each { |key, value| ENV["LOADRUNNER_#{key.to_s.upcase}"] = value }
     end
 
     def matching_handlers
       base = "#{handlers_dir}/#{opts[:repo]}/#{opts[:event]}"
-      handlers = ["#{base}"]
+      handlers = [
+        "#{handlers_dir}/global",
+        "#{handlers_dir}/#{opts[:repo]}/global",
+        "#{base}"
+      ]
 
       handlers.tap do |h|
         h << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
