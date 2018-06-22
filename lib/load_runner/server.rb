@@ -28,8 +28,9 @@ module LoadRunner
       opts = {}
       opts[:repo]    = payload.dig(:repository, :name)
       opts[:event]   = request.env['HTTP_X_GITHUB_EVENT']
-      opts[:branch]  = payload[:ref].sub('refs/heads/', '') if payload[:ref] =~ /refs\/heads/
-      opts[:tag]     = payload[:ref].sub('refs/tags/', '') if payload[:ref] =~ /refs\/tags/
+      opts[:ref]     = payload[:ref]
+      opts[:branch]  = payload[:ref] =~ /refs\/heads/ ? payload[:ref].sub('refs/heads/', '') : nil
+      opts[:tag]     = payload[:ref] =~ /refs\/tags/ ? payload[:ref].sub('refs/tags/', '') : nil
       opts[:payload] = json_string
 
       runner = Runner.new opts

@@ -14,12 +14,12 @@ module LoadRunner
     # populates the `#response` object, and returns true on success.
     def execute
       set_environment_vars
-      
+
       @response = opts.dup
       handlers = locate_handlers
+      @response[:matching_handlers] = matching_handlers
 
       if handlers.empty?
-        @response[:matching_handlers] = matching_handlers
         @response[:error] = "Could not find any handler to process this webhook. Please implement one of the 'matching_handlers'."
         return false
       else

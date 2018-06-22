@@ -4,6 +4,8 @@ describe Runner do
   describe "#execute" do
     subject { described_class.new repo: 'myrepo', event: 'pop', branch: 'slave' }
 
+    before { subject.handlers_dir = 'spec/handlers' }
+
     it "sets all options as env vars" do
       ENV['LOADRUNNER_REPO'] = nil
       ENV['LOADRUNNER_EVENT'] = nil
@@ -24,8 +26,8 @@ describe Runner do
       it "returns matching handlers list" do
         subject.execute
         actual = subject.response[:matching_handlers]
-        expected = ["handlers/global", "handlers/myrepo/global", 
-          "handlers/myrepo/pop", "handlers/myrepo/pop@branch=slave"]
+        expected = ["spec/handlers/global", "spec/handlers/myrepo/global",
+          "spec/handlers/myrepo/pop", "spec/handlers/myrepo/pop@branch=slave"]
         expect(actual).to eq expected
       end
 

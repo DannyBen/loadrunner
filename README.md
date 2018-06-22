@@ -35,21 +35,18 @@ $ gem install loadrunner
 Getting Started
 --------------------------------------------------
 
-```shell
-# Create a sample hook handler
-$ mkdir -p handlers/myrepo
-$ echo '#!/usr/bin/env bash' > handlers/myrepo/push
-$ echo 'echo hello > output.txt' >> handlers/myrepo/push
-$ chmod +x handlers/myrepo/push
+1. Download the [handlers](handlers) directory from this repository, as an
+   exmaple. This directory contains several handler examples.
+2. Make sure that all files within that folder are executables.
+3. Start the server (from the `handlers` **parent** directory):
+   `loadrunner server`
+4. In another terminal, send a sample webhook event:
+   `loadrunner event localhost:3000/payload myrepo push master
 
-# Start the server
-$ loadrunner server
-
-# In another terminal, send a sample webhook event
-$ loadrunner event localhost:3000 myrepo push master
-
-# Verify the handler was executed
-$ cat output.txt
+The server should respond with a detailed JSON response, specifying what
+handlers were executed (`executed_handlers`) and what handlers *could have
+been* executed, if they were defined in the handlers folder
+(`matching_handlers`).
 ```
 
 
@@ -64,15 +61,19 @@ $ loadrunner --help
 Building Handlers
 --------------------------------------------------
 
-When running the server, it will look for handlers in the `./handlers` 
-directory, using one of these format:
+When running the server, it will look for handlers (executable scripts) in
+the `./handlers` directory, using one of these format:
 
+    handlers/global
+    handlers/<repo name>/global
     handlers/<repo name>/<event type>
     handlers/<repo name>/<event type>@branch=<branch name>
     handlers/<repo name>/<event type>@tag=<branch name>
 
 For example:
 
+    handlers/global
+    handlers/myrepo/global
     handlers/myrepo/push
     handlers/myrepo/push@branch=master
     handlers/myrepo/push@tag=release
@@ -88,12 +89,12 @@ executables.
 
 These environment variables are available to your handlers:
 
-- `REPO`
-- `EVENT`
-- `BRANCH`
-- `REF`
-- `TAG`
-- `PAYLOAD` - the entire JSON string as received from GitHub, or the client.
+- `LOADRUNNER_REPO`
+- `LOADRUNNER_EVENT`
+- `LOADRUNNER_BRANCH`
+- `LOADRUNNER_REF`
+- `LOADRUNNER_TAG`
+- `LOADRUNNER_PAYLOAD` - the entire JSON string as received from GitHub, or the client.
 
 
 
