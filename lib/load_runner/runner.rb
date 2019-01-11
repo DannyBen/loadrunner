@@ -7,7 +7,7 @@ module LoadRunner
 
     def initialize(opts)
       @handlers_dir = 'handlers'
-      @opts = opts
+      @opts = opts || {}
     end
 
     # Execute all matching handlers based on the input payload. This method
