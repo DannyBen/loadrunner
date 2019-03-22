@@ -2,7 +2,7 @@
 
 puts "--------------------------------------------------"
 puts "Tag Handler called"
-puts "This handler is called when there is specific tag"
+puts "This handler is called when there is a specific tag"
 
 env_vars = [
   'LOADRUNNER_REPO', 'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 
