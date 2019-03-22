@@ -80,10 +80,10 @@ Environment Variables:
 
 Examples:
   # Simulate push events
-  loadrunner event localhost:3000/payload my_repo push master
-  loadrunner event localhost:3000/payload my_repo push branch=master
-  loadrunner event localhost:3000/payload my_repo push tag=staging --form
-  loadrunner event localhost:3000/payload my_repo push refs/tags/staging
+  loadrunner event localhost:3000/payload myrepo push master
+  loadrunner event localhost:3000/payload myrepo push branch=master
+  loadrunner event localhost:3000/payload myrepo push tag=staging --form
+  loadrunner event localhost:3000/payload myrepo push refs/tags/staging
 
   # Send a payload file
   loadrunner payload localhost:3000/payload push payload.json
