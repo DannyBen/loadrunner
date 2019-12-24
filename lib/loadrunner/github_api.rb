@@ -1,6 +1,6 @@
 require 'httparty'
 
-module LoadRunner
+module Loadrunner
   # Communicate with GitHub
   class GithubAPI
     include HTTParty
@@ -17,7 +17,7 @@ module LoadRunner
       message = {
         body: {
           state: (opts[:state] ? opts[:state].to_s : 'pending'),
-          context: (opts[:context] || 'LoadRunner'),
+          context: (opts[:context] || 'Loadrunner'),
           description: opts[:description],
           target_url: opts[:target_url]
         }.to_json
@@ -36,7 +36,7 @@ module LoadRunner
     def headers
       {
         "Authorization" => "token #{secret_token}",
-        "User-Agent" =>    "LoadRunner"
+        "User-Agent" =>    "Loadrunner"
       }
     end
 

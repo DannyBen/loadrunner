@@ -1,4 +1,4 @@
-module LoadRunner
+module Loadrunner
 
   # The Sinatra server
   class Server < ServerBase

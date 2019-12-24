@@ -1,7 +1,7 @@
 require 'super_docopt'
 require 'colsole'
 
-module LoadRunner
+module Loadrunner
 
   # Handles the command line interface
   class CommandLine < SuperDocopt::Base

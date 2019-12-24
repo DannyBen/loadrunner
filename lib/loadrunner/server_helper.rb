@@ -1,4 +1,4 @@
-module LoadRunner
+module Loadrunner
   module ServerHelper
     def halt_messages
       {

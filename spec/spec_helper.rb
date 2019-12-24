@@ -12,7 +12,7 @@ require 'rack/test'
 ENV['RACK_ENV'] = 'test'
 
 # Include us
-include LoadRunner
+include Loadrunner
 
 # Bootstrap Sinatra testing with rspec
 module RSpecMixin

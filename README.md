@@ -1,4 +1,4 @@
-LoadRunner - GitHub Webhook Server and Event Simulator
+Loadrunner - GitHub Webhook Server and Event Simulator
 ======================================================
 
 [![Gem Version](https://badge.fury.io/rb/loadrunner.svg)](https://badge.fury.io/rb/loadrunner)
@@ -7,7 +7,7 @@ LoadRunner - GitHub Webhook Server and Event Simulator
 
 ---
 
-LoadRunner is a multi-purpose utility for working with GitHub webhooks and 
+Loadrunner is a multi-purpose utility for working with GitHub webhooks and 
 statuses.
 
 It provides these features:
@@ -76,7 +76,7 @@ For example:
     hooks/myrepo/push@branch=master
     hooks/myrepo/push@tag=release
 
-When none of the hooks are found, LoadRunner will respond with a list of
+When none of the hooks are found, Loadrunner will respond with a list of
 hooks it was looking for, so you can use this response to figure out what
 it needs.
 
@@ -98,8 +98,8 @@ These environment variables are available to your hooks:
 Using as a Rack or Sinatra mount
 --------------------------------------------------
 
-If you wish to mount the LoadRunner server under another Rack or Sinatra
-application, use the `LoadRunner::Server` as the handler.
+If you wish to mount the Loadrunner server under another Rack or Sinatra
+application, use the `Loadrunner::Server` as the handler.
 
 
 ```ruby
@@ -107,7 +107,7 @@ application, use the `LoadRunner::Server` as the handler.
 require "loadrunner"
 
 map "/github" do
-  run LoadRunner::Server
+  run Loadrunner::Server
 end
 
 run YourOwnApp
@@ -118,7 +118,7 @@ run YourOwnApp
 Sending Pull Request status from Ruby code
 --------------------------------------------------
 
-You may use the `LoadRunner::GithubAPI` class to update the status of a
+You may use the `Loadrunner::GithubAPI` class to update the status of a
 GitHub pull request.
 
 First, make sure that your GitHub API access token is set in the environment
@@ -127,7 +127,7 @@ variable `GITHUB_ACCESS_TOKEN`.
 ```ruby
 require 'loadrunner/github_api'
 
-api = LoadRunner::GithubAPI.new
+api = Loadrunner::GithubAPI.new
 
 opts = {
   state:       :pending,  # :pending :success :failure :error

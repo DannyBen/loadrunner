@@ -5,7 +5,7 @@ require 'loadrunner/version'
 
 Gem::Specification.new do |s|
   s.name        = 'loadrunner'
-  s.version     = LoadRunner::VERSION
+  s.version     = Loadrunner::VERSION
   s.date        = Date.today.to_s
   s.summary     = "GitHub Webhook Server and Simulator"
   s.description = "Run your GitHub webhook server and Send simulated github events"

@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'ostruct'
 
 describe CommandLine do
-  let(:cli) { LoadRunner::CommandLine }
+  let(:cli) { Loadrunner::CommandLine }
 
   describe "without arguments" do
     it "shows usage patterns" do

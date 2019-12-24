@@ -2,9 +2,9 @@ require "runfile-tasks"
 
 require_relative 'lib/loadrunner'
 
-title   "LoadRunner Developer Toolbelt"
-summary "Runfile tasks for building the LoadRunner gem"
-version LoadRunner::VERSION
+title   "Loadrunner Developer Toolbelt"
+summary "Runfile tasks for building the Loadrunner gem"
+version Loadrunner::VERSION
 
 RunfileTasks::RubyGems.all 'loadrunner'
 RunfileTasks::Testing.rspec

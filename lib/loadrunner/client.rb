@@ -1,7 +1,7 @@
 require 'httparty'
 require 'uri'
 
-module LoadRunner
+module Loadrunner
 
   # Send simulated GitHub events to any webhook server
   class Client

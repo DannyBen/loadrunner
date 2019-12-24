@@ -1,4 +1,4 @@
-LoadRunner
+loadrunner
 
 Usage:
   loadrunner server [--port N --bind IP]

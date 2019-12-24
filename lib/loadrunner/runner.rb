@@ -1,4 +1,4 @@
-module LoadRunner
+module Loadrunner
 
   # Executes event hooks
   class Runner
