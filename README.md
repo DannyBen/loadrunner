@@ -46,7 +46,6 @@ The server should respond with a detailed JSON response, specifying what
 handlers were executed (`executed_handlers`) and what handlers *could have
 been* executed, if they were defined in the handlers folder
 (`matching_handlers`).
-```
 
 
 For more options, see the [documentation][1] or run
@@ -102,16 +101,20 @@ Running with Docker
 
 You can run both the server and the client using Docker.
 
-    # Server
-    $ docker run -p3000:3000 dannyben/loadrunner server
+```shell
+# Server
+$ docker run -p3000:3000 dannyben/loadrunner server
 
-    # Client
-    $ docker run dannyben/loadrunner event http://webhook.server.com/payload repo push
+# Client
+$ docker run dannyben/loadrunner event http://webhook.server.com/payload repo push
+```
 
 If you wish to connect the client to the server you are running through Docker, 
 you can do something like this:
 
-    $ docker run --network host dannyben/loadrunner event http://localhost:3000/payload repo push
+```shell
+$ docker run --network host dannyben/loadrunner event http://localhost:3000/payload repo push
+```
 
 See also: The [docker-compose file](docker-compose.yml).
 
