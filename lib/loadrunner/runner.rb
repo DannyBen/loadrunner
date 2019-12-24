@@ -29,7 +29,7 @@ module LoadRunner
       end
     end
 
-    private
+  private
 
     # Find all hooks that fit the payload meta data.
     def locate_hooks

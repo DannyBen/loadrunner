@@ -25,7 +25,7 @@ module LoadRunner
       self.class.post "/repos/#{repo}/statuses/#{sha}", message.merge(request_options)
     end
 
-    private
+  private
 
     def request_options
       {

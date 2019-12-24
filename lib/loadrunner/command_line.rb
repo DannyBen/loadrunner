@@ -46,7 +46,7 @@ module LoadRunner
       show response
     end
 
-    private
+  private
 
     def client_opts
       {

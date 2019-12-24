@@ -115,6 +115,35 @@ run YourOwnApp
 
 
 
+Sending Pull Request status from Ruby code
+--------------------------------------------------
+
+You may use the `LoadRunner::GithubAPI` class to update the status of a
+GitHub pull request.
+
+First, make sure that your GitHub API access token is set in the environment
+variable `GITHUB_ACCESS_TOKEN`.
+
+```ruby
+require 'loadrunner/github_api'
+
+api = LoadRunner::GithubAPI.new
+
+opts = {
+  state:       :pending,  # :pending :success :failure :error
+  target_url:  "http://example.com", 
+  context:     "My Hooks Server", 
+  description: "Jobs have not started yet"
+}
+
+repo = "user/repo"
+sha = "commit sha string"
+
+response = api.status repo, sha, opts
+```
+
+
+
 Running with Docker
 --------------------------------------------------
 

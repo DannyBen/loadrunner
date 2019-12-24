@@ -42,7 +42,7 @@ module LoadRunner
       self.class.post host_path, body: @payload, headers: headers(event)
     end
 
-    private
+  private
 
     def headers(event=:push)
       {}.tap do |header|

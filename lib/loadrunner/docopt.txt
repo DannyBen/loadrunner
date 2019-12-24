@@ -50,7 +50,7 @@ Parameters:
     Commit SHA string.
 
   STATE
-    One of 'success', 'pending', 'error', 'failure'
+    One of 'success', 'pending', 'error', 'failure'.
 
 Options:
   --port N
