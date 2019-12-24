@@ -95,6 +95,26 @@ These environment variables are available to your hooks:
 
 
 
+Using as a Rack or Sinatra mount
+--------------------------------------------------
+
+If you wish to mount the LoadRunner server under another Rack or Sinatra
+application, use the `LoadRunner::Server` as the handler.
+
+
+```ruby
+# config.ru
+require "loadrunner"
+
+map "/github" do
+  run LoadRunner::Server
+end
+
+run YourOwnApp
+```
+
+
+
 Running with Docker
 --------------------------------------------------
 
