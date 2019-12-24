@@ -1,7 +1,7 @@
 require 'super_docopt'
 require 'colsole'
 
-module LoadRunner
+module Loadrunner
 
   # Handles the command line interface
   class CommandLine < SuperDocopt::Base
@@ -33,7 +33,7 @@ module LoadRunner
     end
 
     def status
-      api = GitHubAPI.new
+      api = GithubAPI.new
       opts = {
         state:       args['STATE'], 
         target_url:  args['--url'], 
@@ -46,7 +46,7 @@ module LoadRunner
       show response
     end
 
-    private
+  private
 
     def client_opts
       {

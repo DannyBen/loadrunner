@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 puts "--------------------------------------------------"
-puts "Global Handler called"
-puts "This handler is called on all events"
+puts "Push Hook called"
+puts "This hook is called on all pushes in this repo"
 
 env_vars = [
   'LOADRUNNER_REPO', 'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 

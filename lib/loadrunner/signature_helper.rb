@@ -1,4 +1,4 @@
-module LoadRunner
+module Loadrunner
   module SignatureHelper
     def verify_signature(payload_body, signature)
       return :no_client if secret_token and !signature

@@ -1,9 +1,8 @@
 require 'sinatra/base'
 require "sinatra/reloader"
 require "sinatra/json"
-require 'active_support/core_ext/hash/indifferent_access'
 
-module LoadRunner
+module Loadrunner
 
   # The base class for the sinatra server.
   # Initialize what we can here, but since there are values that will

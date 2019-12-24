@@ -4,6 +4,6 @@ require "irb"
 require "irb/completion" # easy tab completion
 require "loadrunner"
 
-include LoadRunner
+include Loadrunner
 
 IRB.start

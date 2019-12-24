@@ -1,15 +1,14 @@
-require 'load_runner/version'
+require 'loadrunner/version'
 
-require 'load_runner/signature_helper'
-require 'load_runner/server_helper'
-require 'load_runner/git_hub_api'
+require 'loadrunner/signature_helper'
+require 'loadrunner/server_helper'
+require 'loadrunner/github_api'
 
-require 'load_runner/runner'
-require 'load_runner/server_base'
-require 'load_runner/server'
+require 'loadrunner/runner'
+require 'loadrunner/server_base'
+require 'loadrunner/server'
 
-require 'load_runner/client'
-
-require 'load_runner/command_line'
+require 'loadrunner/client'
+require 'loadrunner/command_line'
 
 require 'byebug' if ENV['BYEBUG']

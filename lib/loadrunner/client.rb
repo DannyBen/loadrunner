@@ -1,7 +1,7 @@
 require 'httparty'
 require 'uri'
 
-module LoadRunner
+module Loadrunner
 
   # Send simulated GitHub events to any webhook server
   class Client
@@ -42,7 +42,7 @@ module LoadRunner
       self.class.post host_path, body: @payload, headers: headers(event)
     end
 
-    private
+  private
 
     def headers(event=:push)
       {}.tap do |header|
