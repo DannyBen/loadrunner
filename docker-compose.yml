@@ -18,7 +18,7 @@ services:
       GITHUB_SECRET_TOKEN:
 
     volumes:
-      - ./handlers:/app/handlers
+      - ./hooks:/app/hooks
 
   event:
     build: .

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
 puts "--------------------------------------------------"
-puts "Tag Handler called"
-puts "This handler is called when there is a specific tag"
+puts "Push Hook called"
+puts "This hook is called when pushing to master"
 
 env_vars = [
   'LOADRUNNER_REPO', 'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 

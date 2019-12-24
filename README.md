@@ -34,18 +34,18 @@ $ gem install loadrunner
 Getting Started
 --------------------------------------------------
 
-1. Download the [handlers](handlers) directory from this repository, as an
-   exmaple. This directory contains several handler examples.
+1. Download the [hooks](hooks) directory from this repository, as an
+   exmaple. This directory contains several hook examples.
 2. Make sure that all files within that folder are executables.
-3. Start the server (from the `handlers` **parent** directory):
+3. Start the server (from the `hooks` **parent** directory):
    `loadrunner server`
 4. In another terminal, send a sample webhook event:
    `loadrunner event localhost:3000/payload myrepo push master
 
 The server should respond with a detailed JSON response, specifying what
-handlers were executed (`executed_handlers`) and what handlers *could have
-been* executed, if they were defined in the handlers folder
-(`matching_handlers`).
+hooks were executed (`executed_hooks`) and what hooks *could have
+been* executed, if they were defined in the hooks folder
+(`matching_hooks`).
 
 
 For more options, see the [documentation][1] or run
@@ -56,36 +56,35 @@ $ loadrunner --help
 
 
 
-Building Handlers
+Building Hooks
 --------------------------------------------------
 
-When running the server, it will look for handlers (executable scripts) in
-the `./handlers` directory, using one of these format:
+When running the server, it will look for hooks (executable scripts) in
+the `./hooks` directory, using one of these format:
 
-    handlers/global
-    handlers/<repo name>/global
-    handlers/<repo name>/<event type>
-    handlers/<repo name>/<event type>@branch=<branch name>
-    handlers/<repo name>/<event type>@tag=<branch name>
+    hooks/global
+    hooks/<repo name>/global
+    hooks/<repo name>/<event type>
+    hooks/<repo name>/<event type>@branch=<branch name>
+    hooks/<repo name>/<event type>@tag=<branch name>
 
 For example:
 
-    handlers/global
-    handlers/myrepo/global
-    handlers/myrepo/push
-    handlers/myrepo/push@branch=master
-    handlers/myrepo/push@tag=release
+    hooks/global
+    hooks/myrepo/global
+    hooks/myrepo/push
+    hooks/myrepo/push@branch=master
+    hooks/myrepo/push@tag=release
 
-When none of the handlers are found, LoadRunner will respond with a list of
-handlers it was looking for, so you can use this response to figure out what
+When none of the hooks are found, LoadRunner will respond with a list of
+hooks it was looking for, so you can use this response to figure out what
 it needs.
 
-The handlers can be written in any language, and should simply be 
-executables.
+The hooks can be written in any language, and should simply be executables.
 
 ### Environment Variables
 
-These environment variables are available to your handlers:
+These environment variables are available to your hooks:
 
 - `LOADRUNNER_REPO`
 - `LOADRUNNER_EVENT`
