@@ -54,7 +54,7 @@ describe CommandLine do
     let(:response) { OpenStruct.new code: 200 }
 
     it "prints the response to stdout" do
-      expect_any_instance_of(GitHubAPI).to receive(:status).and_return(response)
+      expect_any_instance_of(GithubAPI).to receive(:status).and_return(response)
       expect { cli.execute command }.to output(/#<OpenStruct code=200>.*Response Code: 200/m).to_stdout
     end
   end

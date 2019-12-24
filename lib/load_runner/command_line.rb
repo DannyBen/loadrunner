@@ -33,7 +33,7 @@ module LoadRunner
     end
 
     def status
-      api = GitHubAPI.new
+      api = GithubAPI.new
       opts = {
         state:       args['STATE'], 
         target_url:  args['--url'], 

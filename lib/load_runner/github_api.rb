@@ -2,7 +2,7 @@ require 'httparty'
 
 module LoadRunner
   # Communicate with GitHub
-  class GitHubAPI
+  class GithubAPI
     include HTTParty
     
     base_uri 'https://api.github.com'
