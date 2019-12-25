@@ -1,5 +1,9 @@
 require 'super_docopt'
 require 'colsole'
+require 'loadrunner/client'
+require 'loadrunner/server'
+require 'loadrunner/status'
+require 'loadrunner/version'
 
 module Loadrunner
 
@@ -33,15 +37,12 @@ module Loadrunner
     end
 
     def status
-      api = GithubAPI.new
-      opts = {
-        state:       args['STATE'], 
-        target_url:  args['--url'], 
-        context:     args['--context'], 
-        description: args['--desc']
-      }
-
-      response = api.status args['REPO'], args['SHA'], opts
+      response = Status.update repo: args['REPO'], 
+        sha: args['SHA'], 
+        state: args['STATE'], 
+        context: args['--context'],
+        description: args['--desc'],
+        url: args['--url']
 
       show response
     end

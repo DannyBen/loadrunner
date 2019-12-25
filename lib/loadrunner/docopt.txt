@@ -27,7 +27,7 @@ Parameters:
   URL
     The URL of the webhook endpoint. This path should responds
     to POST requests. If you are sending an event to a loadrunner server,
-    send it to the /payload endpoint (e.g. localhost:3000/payload).
+    send it to the root endpoint (e.g. localhost:3000).
 
   REPO
     The name of the repository. This can be either the short name 
@@ -80,13 +80,13 @@ Environment Variables:
 
 Examples:
   # Simulate push events
-  loadrunner event localhost:3000/payload myrepo push master
-  loadrunner event localhost:3000/payload myrepo push branch=master
-  loadrunner event localhost:3000/payload myrepo push tag=staging --form
-  loadrunner event localhost:3000/payload myrepo push refs/tags/staging
+  loadrunner event localhost:3000 myrepo push master
+  loadrunner event localhost:3000 myrepo push branch=master
+  loadrunner event localhost:3000 myrepo push tag=staging --form
+  loadrunner event localhost:3000 myrepo push refs/tags/staging
 
   # Send a payload file
-  loadrunner payload localhost:3000/payload push payload.json
+  loadrunner payload localhost:3000 push payload.json
 
   # Start the server
   loadrunner server

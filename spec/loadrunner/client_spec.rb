@@ -49,7 +49,7 @@ describe Client do
     let(:payload) { {ref: 'refs/heads/test', repository: {name: 'myrepo'}} }
     
     it "sends a post http message" do
-      expect(described_class).to receive(:post).with('/payload', any_args)
+      expect(described_class).to receive(:post).with('', any_args)
       subject.send_payload(:push, payload)
     end
 

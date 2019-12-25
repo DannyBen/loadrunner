@@ -12,7 +12,7 @@ module Loadrunner
       @secret_token = opts[:secret_token]
       @encoding = opts[:encoding] || :json
 
-      base_url = opts[:base_url] || 'http://localhost:3000/payload'
+      base_url = opts[:base_url] || 'http://localhost:3000'
       base_url = "http://#{base_url}" unless base_url =~ /^http/
 
       url_parts = URI.parse base_url

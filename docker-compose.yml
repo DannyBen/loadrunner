@@ -22,7 +22,7 @@ services:
 
   event:
     build: .
-    command: event server:3000/payload myrepo push
+    command: event server:3000 myrepo push
 
     environment:
       GITHUB_SECRET_TOKEN:

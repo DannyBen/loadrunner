@@ -40,7 +40,7 @@ Getting Started
 3. Start the server (from the `hooks` **parent** directory):
    `loadrunner server`
 4. In another terminal, send a sample webhook event:
-   `loadrunner event localhost:3000/payload myrepo push master
+   `loadrunner event localhost:3000 myrepo push master
 
 The server should respond with a detailed JSON response, specifying what
 hooks were executed (`executed_hooks`) and what hooks *could have
@@ -89,9 +89,9 @@ These environment variables are available to your hooks:
 - `LOADRUNNER_REPO`
 - `LOADRUNNER_EVENT`
 - `LOADRUNNER_BRANCH`
+- `LOADRUNNER_COMMIT`
 - `LOADRUNNER_REF`
 - `LOADRUNNER_TAG`
-- `LOADRUNNER_PAYLOAD` - the entire JSON string as received from GitHub, or the client.
 
 
 
@@ -104,7 +104,7 @@ application, use the `Loadrunner::Server` as the handler.
 
 ```ruby
 # config.ru
-require "loadrunner"
+require "loadrunner/server"
 
 map "/github" do
   run Loadrunner::Server
@@ -118,29 +118,24 @@ run YourOwnApp
 Sending Pull Request status from Ruby code
 --------------------------------------------------
 
-You may use the `Loadrunner::GithubAPI` class to update the status of a
+You may use the `Loadrunner::Status` class to update the status of a
 GitHub pull request.
 
 First, make sure that your GitHub API access token is set in the environment
 variable `GITHUB_ACCESS_TOKEN`.
 
 ```ruby
-require 'loadrunner/github_api'
+require 'loadrunner/status'
 
-api = Loadrunner::GithubAPI.new
-
-opts = {
-  state:       :pending,  # :pending :success :failure :error
-  target_url:  "http://example.com", 
-  context:     "My Hooks Server", 
-  description: "Jobs have not started yet"
-}
-
-repo = "user/repo"
-sha = "commit sha string"
-
-response = api.status repo, sha, opts
+response = Loadrunner::Status.update repo: 'user/repo', 
+  sha: 'commit sha string', 
+  state: :pending,  # :pending :success :failure :error
+  context: "My Hooks Server",
+  description: "Jobs have not started yet",
+  url: "http://example.com"
 ```
+
+Only `repo`, `sha` and `state` are required, the rest arguments are optional.
 
 
 
@@ -154,14 +149,14 @@ You can run both the server and the client using Docker.
 $ docker run -p3000:3000 dannyben/loadrunner server
 
 # Client
-$ docker run dannyben/loadrunner event http://webhook.server.com/payload repo push
+$ docker run dannyben/loadrunner event http://webhook.server.com repo push
 ```
 
 If you wish to connect the client to the server you are running through Docker, 
 you can do something like this:
 
 ```shell
-$ docker run --network host dannyben/loadrunner event http://localhost:3000/payload repo push
+$ docker run --network host dannyben/loadrunner event http://localhost:3000 repo push
 ```
 
 See also: The [docker-compose file](docker-compose.yml).
