@@ -19,3 +19,8 @@ help   "Prepare YARD documentation"
 action :yardoc do
   run "yard - README.md"
 end
+
+help   "Generate changelog"
+action :changelog do
+  exec 'github_changelog_generator --user DannyBen --project loadrunner'
+end
