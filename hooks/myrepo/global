@@ -6,7 +6,7 @@ puts "This hook is called on all events in this repo"
 
 env_vars = [
   'LOADRUNNER_REPO', 'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 
-  'LOADRUNNER_REF', 'LOADRUNNER_TAG', 'LOADRUNNER_PAYLOAD'
+  'LOADRUNNER_REF', 'LOADRUNNER_TAG', 'LOADRUNNER_COMMIT'
 ]
 
 env_vars.each do |varname|

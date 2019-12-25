@@ -1,3 +1,8 @@
+require 'loadrunner/server_helper'
+require 'loadrunner/server_base'
+require 'loadrunner/signature_helper'
+require 'loadrunner/runner'
+
 module Loadrunner
 
   # The Sinatra server
@@ -6,10 +11,10 @@ module Loadrunner
     include SignatureHelper
 
     get '/' do
-      "OK"
+      "loadrunner ready"
     end
 
-    post '/payload' do
+    post '/' do
       request.body.rewind
       payload_body = request.body.read
 
@@ -27,11 +32,13 @@ module Loadrunner
 
       opts = {}
       opts[:repo]    = payload.dig('repository', 'name')
+      opts[:commit]  = payload['after']
       opts[:event]   = request.env['HTTP_X_GITHUB_EVENT']
       opts[:ref]     = payload['ref']
       opts[:branch]  = payload['ref'] =~ /refs\/heads/ ? payload['ref'].sub('refs/heads/', '') : nil
       opts[:tag]     = payload['ref'] =~ /refs\/tags/ ? payload['ref'].sub('refs/tags/', '') : nil
-      opts[:payload] = json_string
+
+      File.write "last_payload.json", json_string if ENV['DEBUG']
 
       runner = Runner.new opts
       success = runner.execute

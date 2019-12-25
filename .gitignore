@@ -5,4 +5,5 @@
 /Gemfile.lock
 /.yardoc
 /output.txt
+/last_payload.json
 *.gem
