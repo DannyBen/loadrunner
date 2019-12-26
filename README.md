@@ -87,6 +87,7 @@ The hooks can be written in any language, and should simply be executables.
 These environment variables are available to your hooks:
 
 - `LOADRUNNER_REPO`
+- `LOADRUNNER_OWNER`
 - `LOADRUNNER_EVENT`
 - `LOADRUNNER_BRANCH`
 - `LOADRUNNER_COMMIT`
