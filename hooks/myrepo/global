@@ -5,7 +5,8 @@ puts "Repo-Global Hook called"
 puts "This hook is called on all events in this repo"
 
 env_vars = [
-  'LOADRUNNER_REPO', 'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 
+  'LOADRUNNER_REPO', 'LOADRUNNER_OWNER', 
+  'LOADRUNNER_EVENT', 'LOADRUNNER_BRANCH', 
   'LOADRUNNER_REF', 'LOADRUNNER_TAG', 'LOADRUNNER_COMMIT'
 ]
 

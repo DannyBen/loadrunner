@@ -32,6 +32,7 @@ module Loadrunner
 
       opts = {}
       opts[:repo]    = payload.dig('repository', 'name')
+      opts[:owner]   = payload.dig('repository', 'owner', 'name')
       opts[:commit]  = payload['after']
       opts[:event]   = request.env['HTTP_X_GITHUB_EVENT']
       opts[:ref]     = payload['ref']
