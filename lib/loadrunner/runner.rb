@@ -63,16 +63,21 @@ module Loadrunner
 
     def matching_hooks
       base = "#{hooks_dir}/#{opts[:repo]}/#{opts[:event]}"
+
       hooks = [
         "#{hooks_dir}/global",
         "#{hooks_dir}/#{opts[:repo]}/global",
         "#{base}"
       ]
 
-      hooks.tap do |h|
-        h << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
-        h << "#{base}@tag=#{opts[:tag]}" if opts[:tag]
+      hooks << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
+      
+      if opts[:tag]
+        hooks << "#{base}@tag=#{opts[:tag]}" 
+        hooks << "#{base}@tag"
       end
+
+      hooks
     end
 
   end

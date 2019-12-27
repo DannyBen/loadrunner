@@ -62,12 +62,26 @@ describe Runner do
         expect(actual).to eq expected
       end
 
+      it "returns matching hooks list" do
+        subject.execute
+        actual = subject.response[:matching_hooks]
+        expected = [
+          "spec/fixtures/hooks/global",
+          "spec/fixtures/hooks/myrepo/global",
+          "spec/fixtures/hooks/myrepo/push",
+          "spec/fixtures/hooks/myrepo/push@tag=production",
+          "spec/fixtures/hooks/myrepo/push@tag"
+        ]
+        expect(actual).to eq expected
+      end
+
       it "executes the hooks" do
         File.delete 'secret.txt' if File.exist? 'secret.txt'
         subject.execute
         sleep 2
         expect(File.read 'secret.txt').to eq "There is no spoon\n"
       end
+
     end
 
   end

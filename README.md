@@ -12,7 +12,7 @@ statuses.
 
 It provides these features:
 
-- A webserver that responds to GitHub webhook events and can run any 
+- A web server that responds to GitHub webhook events and can run any 
   arbitrary script written in any language.
 - A command line utility for testing your webhook server configuration by
   sending simulated events.
@@ -35,8 +35,8 @@ Getting Started
 --------------------------------------------------
 
 1. Download the [hooks](hooks) directory from this repository, as an
-   exmaple. This directory contains several hook examples.
-2. Make sure that all files within that folder are executables.
+   example. This directory contains several hook examples.
+2. Make sure that all files within that folder are executable.
 3. Start the server (from the `hooks` **parent** directory):
    `loadrunner server`
 4. In another terminal, send a sample webhook event:
@@ -66,7 +66,8 @@ the `./hooks` directory, using one of these format:
     hooks/<repo name>/global
     hooks/<repo name>/<event type>
     hooks/<repo name>/<event type>@branch=<branch name>
-    hooks/<repo name>/<event type>@tag=<branch name>
+    hooks/<repo name>/<event type>@tag=<tag name>
+    hooks/<repo name>/<event type>@tag
 
 For example:
 
@@ -75,12 +76,13 @@ For example:
     hooks/myrepo/push
     hooks/myrepo/push@branch=master
     hooks/myrepo/push@tag=release
+    hooks/myrepo/push@tag
 
 When none of the hooks are found, Loadrunner will respond with a list of
 hooks it was looking for, so you can use this response to figure out what
 it needs.
 
-The hooks can be written in any language, and should simply be executables.
+The hooks can be written in any language, and should simply be executable.
 
 ### Environment Variables
 
