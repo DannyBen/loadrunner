@@ -72,6 +72,7 @@ module Loadrunner
       hooks.tap do |h|
         h << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
         h << "#{base}@tag=#{opts[:tag]}" if opts[:tag]
+        h << "#{base}@tag" if opts[:tag]
       end
     end
 
