@@ -1,13 +1,37 @@
 # Changelog
 
+## [Unreleased](https://github.com/DannyBen/loadrunner/tree/HEAD)
+
+[Full Changelog](https://github.com/DannyBen/loadrunner/compare/v0.4.4...HEAD)
+
+**Closed issues:**
+
+- Add support for glob or regex patterns in tag / branch handlers [\#18](https://github.com/DannyBen/loadrunner/issues/18)
+
+## [v0.4.4](https://github.com/DannyBen/loadrunner/tree/v0.4.4) (2019-12-27)
+
+[Full Changelog](https://github.com/DannyBen/loadrunner/compare/v0.4.3...v0.4.4)
+
+**Closed issues:**
+
+- Improve status sending from Ruby code [\#17](https://github.com/DannyBen/loadrunner/issues/17)
+
+**Merged pull requests:**
+
+- Add repo@tag hook to handle all tags [\#21](https://github.com/DannyBen/loadrunner/pull/21) ([DannyBen](https://github.com/DannyBen))
+- Add LOADRUNNER\_OWNER env var [\#20](https://github.com/DannyBen/loadrunner/pull/20) ([DannyBen](https://github.com/DannyBen))
+
 ## [v0.4.3](https://github.com/DannyBen/loadrunner/tree/v0.4.3) (2019-12-25)
 
 [Full Changelog](https://github.com/DannyBen/loadrunner/compare/v0.4.2...v0.4.3)
 
-**Merged pull requests:**
+**Breaking changes:**
 
 - Updates \(breaking changes\) [\#19](https://github.com/DannyBen/loadrunner/pull/19) ([DannyBen](https://github.com/DannyBen))
 - Maintenance update \(breaking changes\) [\#16](https://github.com/DannyBen/loadrunner/pull/16) ([DannyBen](https://github.com/DannyBen))
+
+**Merged pull requests:**
+
 - Test with Ruby 2.7 [\#15](https://github.com/DannyBen/loadrunner/pull/15) ([DannyBen](https://github.com/DannyBen))
 - Remove Code Climate coverage and test with Ruby 2.6 [\#14](https://github.com/DannyBen/loadrunner/pull/14) ([DannyBen](https://github.com/DannyBen))
 

@@ -22,5 +22,5 @@ end
 
 help   "Generate changelog"
 action :changelog do
-  exec 'github_changelog_generator --user DannyBen --project loadrunner'
+  exec 'github_changelog_generator --user DannyBen --project loadrunner --no-http-cache'
 end
