@@ -40,7 +40,7 @@ Getting Started
 3. Start the server (from the `hooks` **parent** directory):
    `loadrunner server`
 4. In another terminal, send a sample webhook event:
-   `loadrunner event localhost:3000 myrepo push master
+   `loadrunner event localhost:3000 myrepo push master`
 
 The server should respond with a detailed JSON response, specifying what
 hooks were executed (`executed_hooks`) and what hooks *could have
