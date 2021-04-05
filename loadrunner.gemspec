@@ -21,6 +21,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'httparty', '~> 0.14'
   s.add_runtime_dependency 'sinatra', '~> 2.0'
   s.add_runtime_dependency 'sinatra-contrib', '~> 2.0'
-  s.add_runtime_dependency 'puma', '~> 4.3'
+  s.add_runtime_dependency 'puma', '~> 5.2'
   s.add_runtime_dependency 'colsole', '~> 0.6'
 end
