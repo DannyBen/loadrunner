@@ -12,12 +12,12 @@ RunfileTasks::Docs.rdoc
 
 help   "Run YARD server"
 action :yard do
-  run "yard server -p3000 -B0.0.0.0 -r"
+  system "yard server -p3000 -B0.0.0.0 -r"
 end
 
 help   "Prepare YARD documentation"
 action :yardoc do
-  run "yard - README.md"
+  system "yard - README.md"
 end
 
 help   "Generate changelog"
