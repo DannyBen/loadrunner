@@ -78,8 +78,8 @@ module Loadrunner
 
       if response.respond_to? :code
         code = response.code.to_s
-        color = code =~ /^2\d\d/ ? :txtgrn : :txtred
-        say "!#{color}!Response Code: #{code}"
+        color = code =~ /^2\d\d/ ? :g : :r
+        say "#{color}`Response Code: #{code}`"
       end
     end
 
