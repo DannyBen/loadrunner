@@ -1,14 +1,10 @@
-require "runfile-tasks"
-
-require_relative 'lib/loadrunner'
+require 'loadrunner'
+require 'loadrunner/version'
 
 title   "Loadrunner Developer Toolbelt"
-summary "Runfile tasks for building the Loadrunner gem"
-version Loadrunner::VERSION
 
-RunfileTasks::RubyGems.all 'loadrunner'
-RunfileTasks::Testing.rspec
-RunfileTasks::Docs.rdoc
+import_gem 'runfile-tasks/gem'
+import_gem 'runfile-tasks/docker', image: 'dannyben/loadrunner', version: Loadrunner::VERSION
 
 help   "Run YARD server"
 action :yard do
@@ -20,7 +16,9 @@ action :yardoc do
   system "yard - README.md"
 end
 
-help   "Generate changelog"
+help   "Generate changelog and append old changelog"
 action :changelog do
-  exec 'github_changelog_generator --user DannyBen --project loadrunner --no-http-cache'
+  system "git changelog --save"
+  # append older changelog (prior to switching to git-changelog)
+  system "cat .changelog.old.md >> CHANGELOG.md"
 end

@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
-gem 'runfile'
-gem 'runfile-tasks'
-gem 'rspec'
-gem 'simplecov'
 gem 'byebug'
 gem 'rack-test'
+gem 'rspec'
+gem 'runfile'
+gem 'runfile-tasks'
+gem 'simplecov'
 gem 'yard'
 
 gemspec
