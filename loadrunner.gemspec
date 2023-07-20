@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.executables = ["loadrunner"]
   s.homepage    = 'https://github.com/DannyBen/loadrunner'
   s.license     = 'MIT'
-  s.required_ruby_version = ">= 2.7.0"
+  s.required_ruby_version = ">= 3.0"
 
   s.add_runtime_dependency 'colsole', '>= 0.8.1', '< 2.0'
   s.add_runtime_dependency 'httparty', '~> 0.21'
@@ -21,4 +21,11 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sinatra', '~> 3.0'
   s.add_runtime_dependency 'sinatra-contrib', '~> 3.0'
   s.add_runtime_dependency 'super_docopt', '~> 0.1'
+
+  s.metadata = {
+    'bug_tracker_uri'       => 'https://github.com/DannyBen/loadrunner/issues',
+    'changelog_uri'         => 'https://github.com/DannyBen/loadrunner/blob/master/CHANGELOG.md',
+    'source_code_uri'       => 'https://github.com/DannyBen/loadrunner',
+    'rubygems_mfa_required' => 'true',
+  }
 end

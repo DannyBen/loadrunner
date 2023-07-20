@@ -28,5 +28,6 @@ RSpec.configure do |config|
   config.include RSpecMixin
   config.include ServerHelper
   config.include SignatureHelper
+  config.example_status_persistence_file_path = 'spec/status.txt'
 end
 

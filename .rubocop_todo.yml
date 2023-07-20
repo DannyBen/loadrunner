@@ -1,0 +1,368 @@
+# one by one as the offenses are removed from the code base.
+# Note that changes in the inspected code, or installation of new
+# versions of RuboCop, may require this file to be generated again.
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: Severity, Include.
+# Include: **/*.gemspec
+Gemspec/RequireMFA:
+  Exclude:
+    - 'loadrunner.gemspec'
+
+# Offense count: 1
+# Configuration parameters: Severity, Include.
+# Include: **/*.gemspec
+Gemspec/RequiredRubyVersion:
+  Exclude:
+    - 'loadrunner.gemspec'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, IndentationWidth.
+# SupportedStyles: with_first_element, with_fixed_indentation
+Layout/ArrayAlignment:
+  Exclude:
+    - 'spec/loadrunner/runner_spec.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Layout/BlockEndNewline:
+  Exclude:
+    - 'spec/loadrunner/github_api_spec.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Layout/EmptyLineAfterGuardClause:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+
+# Offense count: 3
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, no_empty_lines
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'spec/loadrunner/runner_spec.rb'
+    - 'spec/loadrunner/signature_helper_spec.rb'
+
+# Offense count: 3
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines, beginning_only, ending_only
+Layout/EmptyLinesAroundClassBody:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/github_api.rb'
+    - 'lib/loadrunner/runner.rb'
+
+# Offense count: 5
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
+Layout/EmptyLinesAroundModuleBody:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/command_line.rb'
+    - 'lib/loadrunner/runner.rb'
+    - 'lib/loadrunner/server.rb'
+    - 'lib/loadrunner/server_base.rb'
+
+# Offense count: 2
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowForAlignment, AllowBeforeTrailingComments, ForceEqualSignAlignment.
+Layout/ExtraSpacing:
+  Exclude:
+    - 'spec/loadrunner/client_spec.rb'
+
+# Offense count: 10
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowMultipleStyles, EnforcedHashRocketStyle, EnforcedColonStyle, EnforcedLastArgumentHashStyle.
+# SupportedHashRocketStyles: key, separator, table
+# SupportedColonStyles: key, separator, table
+# SupportedLastArgumentHashStyles: always_inspect, always_ignore, ignore_implicit, ignore_explicit
+Layout/HashAlignment:
+  Exclude:
+    - 'lib/loadrunner/command_line.rb'
+    - 'lib/loadrunner/github_api.rb'
+    - 'lib/loadrunner/server_helper.rb'
+    - 'lib/loadrunner/status.rb'
+    - 'spec/loadrunner/client_spec.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Layout/MultilineBlockLayout:
+  Exclude:
+    - 'spec/loadrunner/github_api_spec.rb'
+
+# Offense count: 7
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: .
+# SupportedStyles: space, no_space
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+# Offense count: 8
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowForAlignment, EnforcedStyleForExponentOperator.
+# SupportedStylesForExponentOperator: space, no_space
+Layout/SpaceAroundOperators:
+  Exclude:
+    - 'spec/loadrunner/client_spec.rb'
+
+# Offense count: 8
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
+# SupportedStyles: space, no_space
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideBlockBraces:
+  Exclude:
+    - 'spec/loadrunner/command_line_spec.rb'
+
+# Offense count: 20
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
+# SupportedStyles: space, no_space, compact
+# SupportedStylesForEmptyBraces: space, no_space
+Layout/SpaceInsideHashLiteralBraces:
+  Exclude:
+    - 'spec/loadrunner/client_spec.rb'
+    - 'spec/loadrunner/github_api_spec.rb'
+    - 'spec/loadrunner/server_spec.rb'
+    - 'spec/loadrunner/signature_helper_spec.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Exclude:
+    - 'spec/loadrunner/command_line_spec.rb'
+
+# Offense count: 12
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: final_newline, final_blank_line
+Layout/TrailingEmptyLines:
+  Exclude:
+    - 'Gemfile'
+    - 'bin/console'
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/runner.rb'
+    - 'lib/loadrunner/server.rb'
+    - 'lib/loadrunner/server_helper.rb'
+    - 'lib/loadrunner/signature_helper.rb'
+    - 'lib/loadrunner/version.rb'
+    - 'spec/loadrunner/client_spec.rb'
+    - 'spec/loadrunner/command_line_spec.rb'
+    - 'spec/loadrunner/status_spec.rb'
+    - 'spec/spec_helper.rb'
+
+# Offense count: 33
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowInHeredoc.
+Layout/TrailingWhitespace:
+  Exclude:
+    - 'hooks/global'
+    - 'hooks/myrepo/global'
+    - 'hooks/myrepo/push'
+    - 'hooks/myrepo/push@branch=master'
+    - 'hooks/myrepo/push@tag=mytag'
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/command_line.rb'
+    - 'lib/loadrunner/github_api.rb'
+    - 'lib/loadrunner/runner.rb'
+    - 'spec/loadrunner/client_spec.rb'
+    - 'spec/loadrunner/github_api_spec.rb'
+    - 'spec/loadrunner/runner_spec.rb'
+    - 'spec/spec_helper.rb'
+
+# Offense count: 6
+# This cop supports safe autocorrection (--autocorrect).
+Performance/RegexpMatch:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/command_line.rb'
+    - 'lib/loadrunner/server.rb'
+
+# Offense count: 2
+# This cop supports unsafe autocorrection (--autocorrect-all).
+Performance/StringInclude:
+  Exclude:
+    - 'lib/loadrunner/server.rb'
+
+# Offense count: 7
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/loadrunner/command_line_spec.rb'
+    - 'spec/loadrunner/server_spec.rb'
+    - 'spec/loadrunner/status_spec.rb'
+
+# Offense count: 2
+# Configuration parameters: CountAsOne.
+RSpec/ExampleLength:
+  Max: 10
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: CustomTransform, IgnoredWords, DisallowedExamples.
+# DisallowedExamples: works
+RSpec/ExampleWording:
+  Exclude:
+    - 'spec/loadrunner/server_spec.rb'
+
+# Offense count: 4
+RSpec/StubbedMock:
+  Exclude:
+    - 'spec/loadrunner/command_line_spec.rb'
+    - 'spec/loadrunner/status_spec.rb'
+
+# Offense count: 3
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: always, conditionals
+Style/AndOr:
+  Exclude:
+    - 'lib/loadrunner/signature_helper.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, AllowedMethods, AllowedPatterns, AllowBracesOnProceduralOneLiners, BracesRequiredMethods.
+# SupportedStyles: line_count_based, semantic, braces_for_chaining, always_braces
+# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
+# FunctionalMethods: let, let!, subject, watch
+# AllowedMethods: lambda, proc, it
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/loadrunner/github_api_spec.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, SingleLineConditionsOnly, IncludeTernaryExpressions.
+# SupportedStyles: assign_to_condition, assign_inside_condition
+Style/ConditionalAssignment:
+  Exclude:
+    - 'lib/loadrunner/server.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Style/DefWithParentheses:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Style/ExpandPathArguments:
+  Exclude:
+    - 'loadrunner.gemspec'
+
+# Offense count: 1
+# This cop supports unsafe autocorrection (--autocorrect-all).
+Style/GlobalStdStream:
+  Exclude:
+    - 'bin/loadrunner'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
+Style/GuardClause:
+  Exclude:
+    - 'lib/loadrunner/command_line.rb'
+
+# Offense count: 6
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
+# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
+# SupportedShorthandSyntax: always, never, either, consistent
+Style/HashSyntax:
+  Exclude:
+    - 'spec/loadrunner/client_spec.rb'
+
+# Offense count: 1
+# This cop supports unsafe autocorrection (--autocorrect-all).
+Style/RedundantInterpolation:
+  Exclude:
+    - 'lib/loadrunner/runner.rb'
+
+# Offense count: 3
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowMultipleReturnValues.
+Style/RedundantReturn:
+  Exclude:
+    - 'lib/loadrunner/runner.rb'
+    - 'lib/loadrunner/signature_helper.rb'
+
+# Offense count: 3
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
+# SupportedStyles: slashes, percent_r, mixed
+Style/RegexpLiteral:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/server.rb'
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+Style/StderrPuts:
+  Exclude:
+    - 'bin/loadrunner'
+
+# Offense count: 2
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: Mode.
+Style/StringConcatenation:
+  Exclude:
+    - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/signature_helper.rb'
+
+# Offense count: 132
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
+# SupportedStyles: single_quotes, double_quotes
+Style/StringLiterals:
+  Enabled: false
+
+# Offense count: 1
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Offense count: 2
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInArrayLiteral:
+  Exclude:
+    - 'lib/loadrunner/runner.rb'
+    - 'spec/loadrunner/runner_spec.rb'
+
+# Offense count: 8
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyleForMultiline.
+# SupportedStylesForMultiline: comma, consistent_comma, no_comma
+Style/TrailingCommaInHashLiteral:
+  Exclude:
+    - 'lib/loadrunner/command_line.rb'
+    - 'lib/loadrunner/github_api.rb'
+    - 'lib/loadrunner/server_helper.rb'
+    - 'lib/loadrunner/status.rb'
+    - 'spec/loadrunner/client_spec.rb'
+
+# Offense count: 5
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: EnforcedStyle, MinSize, WordRegex.
+# SupportedStyles: percent, brackets
+Style/WordArray:
+  Exclude:
+    - 'hooks/global'
+    - 'hooks/myrepo/global'
+    - 'hooks/myrepo/push'
+    - 'hooks/myrepo/push@branch=master'
+    - 'hooks/myrepo/push@tag=mytag'
+
+# Offense count: 2
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 126
