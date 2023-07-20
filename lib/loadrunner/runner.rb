@@ -20,11 +20,11 @@ module Loadrunner
 
       if hooks.empty?
         @response[:error] = "Could not find any hook to process this request. Please implement one of the 'matching_hooks'."
-        return false
+        false
       else
         execute_all hooks
         @response[:executed_hooks] = hooks
-        return true
+        true
       end
     end
 
@@ -66,7 +66,7 @@ module Loadrunner
       hooks = [
         "#{hooks_dir}/global",
         "#{hooks_dir}/#{opts[:repo]}/global",
-        "#{base}",
+        base.to_s,
       ]
 
       hooks << "#{base}@branch=#{opts[:branch]}" if opts[:branch]

@@ -2,7 +2,7 @@
 # This cop supports safe autocorrection (--autocorrect).
 Performance/RegexpMatch:
   Exclude:
-    - 'lib/loadrunner/client.rb'
+    # - 'lib/loadrunner/client.rb'
     - 'lib/loadrunner/command_line.rb'
     - 'lib/loadrunner/server.rb'
 
@@ -66,18 +66,6 @@ Style/ConditionalAssignment:
     - 'lib/loadrunner/server.rb'
 
 # Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/DefWithParentheses:
-  Exclude:
-    - 'spec/spec_helper.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-Style/ExpandPathArguments:
-  Exclude:
-    - 'loadrunner.gemspec'
-
-# Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/GlobalStdStream:
   Exclude:
@@ -89,29 +77,6 @@ Style/GlobalStdStream:
 Style/GuardClause:
   Exclude:
     - 'lib/loadrunner/command_line.rb'
-
-# Offense count: 6
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, EnforcedShorthandSyntax, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-# SupportedShorthandSyntax: always, never, either, consistent
-Style/HashSyntax:
-  Exclude:
-    - 'spec/loadrunner/client_spec.rb'
-
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Style/RedundantInterpolation:
-  Exclude:
-    - 'lib/loadrunner/runner.rb'
-
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'lib/loadrunner/runner.rb'
-    - 'lib/loadrunner/signature_helper.rb'
 
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).

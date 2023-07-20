@@ -7,7 +7,7 @@ module Loadrunner
 
       expected_signature = generate_signature payload_body
       signature_match = Rack::Utils.secure_compare(expected_signature, signature)
-      return signature_match ? :ok : :mismatch
+      signature_match ? :ok : :mismatch
     end
 
     def generate_signature(payload_body)

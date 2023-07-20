@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Client do
   describe '#send_event' do
     context 'without arguments' do
-      let(:payload) { { :ref => nil, :repository => { :name=>nil } } }
+      let(:payload) { { ref: nil, repository: { name: nil } } }
 
       it 'builds and sends a payload' do
         expect(subject).to receive(:send_payload).with(:push, payload)
@@ -12,7 +12,7 @@ describe Client do
     end
 
     context 'with arguments' do
-      let(:payload) { { :ref => 'refs/heads/test', :repository => { :name=>'myrepo' } } }
+      let(:payload) { { ref: 'refs/heads/test', repository: { name: 'myrepo' } } }
 
       it 'builds and sends a payload' do
         expect(subject).to receive(:send_payload).with(:ping, payload)
