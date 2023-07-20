@@ -1,9 +1,10 @@
+*.gem
+/.yardoc
 /coverage
 /dev
 /doc
-/gems
 /Gemfile.lock
-/.yardoc
-/output.txt
+/gems
 /last_payload.json
-*.gem
+/output.txt
+/spec/status.txt

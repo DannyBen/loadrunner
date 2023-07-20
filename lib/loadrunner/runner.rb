@@ -1,5 +1,4 @@
 module Loadrunner
-
   # Executes event hooks
   class Runner
     attr_reader :opts
@@ -20,12 +19,15 @@ module Loadrunner
       @response[:matching_hooks] = matching_hooks
 
       if hooks.empty?
-        @response[:error] = "Could not find any hook to process this request. Please implement one of the 'matching_hooks'."
-        return false
+        @response[:error] =
+          "Could not find any hook to process this request. Please implement one of the 'matching_hooks'."
+
+        false
       else
         execute_all hooks
         @response[:executed_hooks] = hooks
-        return true
+
+        true
       end
     end
 
@@ -67,18 +69,17 @@ module Loadrunner
       hooks = [
         "#{hooks_dir}/global",
         "#{hooks_dir}/#{opts[:repo]}/global",
-        "#{base}"
+        base.to_s,
       ]
 
       hooks << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
-      
+
       if opts[:tag]
-        hooks << "#{base}@tag=#{opts[:tag]}" 
+        hooks << "#{base}@tag=#{opts[:tag]}"
         hooks << "#{base}@tag"
       end
 
       hooks
     end
-
   end
 end

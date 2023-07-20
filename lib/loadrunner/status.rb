@@ -8,10 +8,10 @@ module Loadrunner
         api = GithubAPI.new
 
         opts = {
-          state: state,
+          state:       state,
           target_url:  url,
-          context: context,
-          description: description
+          context:     context,
+          description: description,
         }
 
         api.status repo, sha, opts

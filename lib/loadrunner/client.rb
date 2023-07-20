@@ -2,18 +2,17 @@ require 'httparty'
 require 'uri'
 
 module Loadrunner
-
   # Send simulated GitHub events to any webhook server
   class Client
     include HTTParty
     attr_accessor :secret_token, :host, :host_path, :payload, :encoding
-    
-    def initialize(opts={})
+
+    def initialize(opts = {})
       @secret_token = opts[:secret_token]
       @encoding = opts[:encoding] || :json
 
       base_url = opts[:base_url] || 'http://localhost:3000'
-      base_url = "http://#{base_url}" unless base_url =~ /^http/
+      base_url = "http://#{base_url}" unless /^http/.match?(base_url)
 
       url_parts = URI.parse base_url
       @host_path = url_parts.path
@@ -30,7 +29,7 @@ module Loadrunner
     # * +ref+: ref ID (for example +ref/heads/branchname+)
     # * +branch+: branch name
     # * +tag+: tag name
-    def send_event(event=:push, opts={})
+    def send_event(event = :push, opts = {})
       payload = build_payload opts
       send_payload event, payload
     end
@@ -44,7 +43,7 @@ module Loadrunner
 
   private
 
-    def headers(event=:push)
+    def headers(event = :push)
       {}.tap do |header|
         header['X-GitHub-Event'] = event.to_s if event
         header['X-Hub-Signature'] = signature if secret_token
@@ -54,10 +53,12 @@ module Loadrunner
 
     def signature
       return nil unless secret_token
-      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
+
+      sha = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
+      "sha1=#{sha}"
     end
 
-    def build_payload(opts={})
+    def build_payload(opts = {})
       {}.tap do |result|
         result[:ref] = ref_from_opts opts
         result[:repository] = repo_from_opts opts
@@ -68,17 +69,17 @@ module Loadrunner
       if opts[:ref]
         opts[:ref]
       elsif opts[:branch]
-        "refs/heads/#{opts[:branch]}" 
+        "refs/heads/#{opts[:branch]}"
       elsif opts[:tag]
         "refs/tags/#{opts[:tag]}"
       end
     end
 
     def repo_from_opts(opts)
-      if opts[:repo] =~ /.+\/.+/
+      if %r{.+/.+}.match?(opts[:repo])
         _owner, name = opts[:repo].split '/'
         { name: name, full_name: opts[:repo] }
-      else 
+      else
         { name: opts[:repo] }
       end
     end
@@ -89,6 +90,5 @@ module Loadrunner
         form: 'application/x-www-form-urlencoded',
       }
     end
-
   end
 end

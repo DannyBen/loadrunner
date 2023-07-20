@@ -6,14 +6,13 @@ require 'loadrunner/status'
 require 'loadrunner/version'
 
 module Loadrunner
-
   # Handles the command line interface
   class CommandLine < SuperDocopt::Base
     include Colsole
 
     version VERSION
     docopt File.expand_path 'docopt.txt', __dir__
-    subcommands [:event, :payload, :status, :server]
+    subcommands %i[event payload status server]
 
     def event
       client = Client.new client_opts
@@ -37,9 +36,9 @@ module Loadrunner
     end
 
     def status
-      response = Status.update repo: args['REPO'], 
-        sha: args['SHA'], 
-        state: args['STATE'], 
+      response = Status.update repo: args['REPO'],
+        sha: args['SHA'],
+        state: args['STATE'],
         context: args['--context'],
         description: args['--desc'],
         url: args['--url']
@@ -51,9 +50,9 @@ module Loadrunner
 
     def client_opts
       {
-        base_url: args['URL'], 
+        base_url:     args['URL'],
         secret_token: ENV['GITHUB_SECRET_TOKEN'],
-        encoding: args['--form'] ? :form : :json
+        encoding:     args['--form'] ? :form : :json,
       }
     end
 
@@ -66,7 +65,7 @@ module Loadrunner
       ref = args['REF'] || 'master'
       ref = "refs/tags/#{$1}" if ref =~ /^tag=(.+)/
       ref = "refs/heads/#{$1}" if ref =~ /^branch=(.+)/
-      ref = "refs/heads/#{ref}" if ref !~ /^refs/
+      ref = "refs/heads/#{ref}" unless /^refs/.match?(ref)
 
       result[:ref] = ref
       result
@@ -76,11 +75,11 @@ module Loadrunner
     def show(response)
       puts json_generate(response)
 
-      if response.respond_to? :code
-        code = response.code.to_s
-        color = code =~ /^2\d\d/ ? :g : :r
-        say "#{color}`Response Code: #{code}`"
-      end
+      return unless response.respond_to? :code
+
+      code = response.code.to_s
+      color = /^2\d\d/.match?(code) ? :g : :r
+      say "#{color}`Response Code: #{code}`"
     end
 
     def json_generate(object)

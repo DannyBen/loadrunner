@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'byebug'
 gem 'rack-test'
@@ -9,4 +9,3 @@ gem 'simplecov'
 gem 'yard'
 
 gemspec
-

@@ -1,0 +1,20 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+inherit_gem:
+  rentacop:
+    - rentacop.yml
+    - rspec.yml
+
+AllCops:
+  TargetRubyVersion: 3.0
+  SuggestExtensions: false
+  Exclude:
+    - 'dev/**/*'
+
+Metrics/ParameterLists:
+  Max: 6
+
+RSpec/ExampleLength:
+  Max: 10
