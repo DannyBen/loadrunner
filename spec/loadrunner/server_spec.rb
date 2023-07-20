@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Server do
-  it 'works' do
+  it 'is successful' do
     get '/'
     expect(last_response).to be_ok
     expect(last_response.body).to eq 'loadrunner ready'

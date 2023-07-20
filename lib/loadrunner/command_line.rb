@@ -65,7 +65,7 @@ module Loadrunner
       ref = args['REF'] || 'master'
       ref = "refs/tags/#{$1}" if ref =~ /^tag=(.+)/
       ref = "refs/heads/#{$1}" if ref =~ /^branch=(.+)/
-      ref = "refs/heads/#{ref}" if ref !~ /^refs/
+      ref = "refs/heads/#{ref}" unless /^refs/.match?(ref)
 
       result[:ref] = ref
       result
@@ -75,11 +75,11 @@ module Loadrunner
     def show(response)
       puts json_generate(response)
 
-      if response.respond_to? :code
-        code = response.code.to_s
-        color = code =~ /^2\d\d/ ? :g : :r
-        say "#{color}`Response Code: #{code}`"
-      end
+      return unless response.respond_to? :code
+
+      code = response.code.to_s
+      color = /^2\d\d/.match?(code) ? :g : :r
+      say "#{color}`Response Code: #{code}`"
     end
 
     def json_generate(object)

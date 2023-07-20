@@ -12,7 +12,7 @@ module Loadrunner
       @encoding = opts[:encoding] || :json
 
       base_url = opts[:base_url] || 'http://localhost:3000'
-      base_url = "http://#{base_url}" unless base_url =~ /^http/
+      base_url = "http://#{base_url}" unless /^http/.match?(base_url)
 
       url_parts = URI.parse base_url
       @host_path = url_parts.path
@@ -54,7 +54,8 @@ module Loadrunner
     def signature
       return nil unless secret_token
 
-      'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
+      sha = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), secret_token, payload)
+      "sha1=#{sha}"
     end
 
     def build_payload(opts = {})
@@ -75,7 +76,7 @@ module Loadrunner
     end
 
     def repo_from_opts(opts)
-      if opts[:repo] =~ /.+\/.+/
+      if %r{.+/.+}.match?(opts[:repo])
         _owner, name = opts[:repo].split '/'
         { name: name, full_name: opts[:repo] }
       else

@@ -3,10 +3,12 @@ require 'spec_helper'
 describe GithubAPI do
   let(:sha) { 'S4mpl3Sh4C0d3' }
   let(:repo) { 'myrepo' }
-  let(:opts) {
-    { state: :success, context: 'specs',
-    description: 'running specs', target_url: 'myci.com' }
-  }
+  let(:opts) do
+    {
+      state: :success, context: 'specs',
+      description: 'running specs', target_url: 'myci.com'
+    }
+  end
 
   describe '#status' do
     it 'posts to github' do

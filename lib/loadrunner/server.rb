@@ -22,11 +22,12 @@ module Loadrunner
 
       halt 401, halt_messages[state] if state != :ok
 
-      if request.content_type == 'application/json'
-        json_string = payload_body
+      json_string = if request.content_type == 'application/json'
+        payload_body
       else
-        json_string = URI.decode_www_form(payload_body).to_h['payload']
+        URI.decode_www_form(payload_body).to_h['payload']
       end
+
       payload = JSON.parse json_string
 
       opts = {}
