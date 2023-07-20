@@ -4,12 +4,15 @@ describe Status do
   subject { described_class }
 
   describe 'status' do
-    let(:expected) { OpenStruct.new code: 200 }
+    let(:response) { OpenStruct.new code: 200 }
+    let(:github_api_double) { double GithubAPI, status: response }
 
     it 'calls GitHub API' do
-      expect_any_instance_of(GithubAPI).to receive(:status).and_return(expected)
-      actual = subject.update repo: 'repo', sha: 'sha', state: 'pending'
-      expect(actual).to eq expected
+      allow(GithubAPI).to receive(:new).and_return github_api_double
+      allow(github_api_double).to receive(:status).and_return(response)
+
+      expect(subject.update repo: 'repo', sha: 'sha', state: 'pending')
+        .to eq response
     end
   end
 end

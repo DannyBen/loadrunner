@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Server do
+  let(:runner_double) { double Runner, execute: true }
+
   it 'is successful' do
     get '/'
     expect(last_response).to be_ok
@@ -14,7 +16,8 @@ describe Server do
       let(:header) { { 'CONTENT_TYPE' => 'application/json' } }
 
       it 'executes the runner' do
-        expect_any_instance_of(Runner).to receive(:execute)
+        allow(Runner).to receive(:new).and_return runner_double
+        expect(runner_double).to receive(:execute)
         post '/', payload, header
       end
     end
@@ -24,23 +27,22 @@ describe Server do
       let(:payload) { URI.encode_www_form({ payload: { key: 'value' }.to_json }) }
 
       it 'executes the runner' do
-        expect_any_instance_of(Runner).to receive(:execute)
+        allow(Runner).to receive(:new).and_return runner_double
+        expect(runner_double).to receive(:execute)
         post '/', payload, header
       end
     end
 
     context 'when a signature is required' do
-      before do
-        ENV['GITHUB_SECRET_TOKEN'] = '123'
-      end
-
-      after do
-        ENV['GITHUB_SECRET_TOKEN'] = nil
-      end
+      before { ENV['GITHUB_SECRET_TOKEN'] = '123' }
+      after { ENV['GITHUB_SECRET_TOKEN'] = nil }
 
       it 'halts with 401' do
-        expect_any_instance_of(Runner).not_to receive(:execute)
+        allow(Runner).to receive(:new).and_return runner_double
+        expect(runner_double).not_to receive(:execute)
+
         post '/', payload
+
         expect(last_response.status).to be 401
         expect(last_response.body).to eq halt_messages[:no_client]
       end
