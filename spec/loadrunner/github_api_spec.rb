@@ -8,8 +8,8 @@ describe GithubAPI do
     description: 'running specs', target_url: 'myci.com' }
   }
 
-  describe "#status" do
-    it "posts to github" do
+  describe '#status' do
+    it 'posts to github' do
       expected_url = "/repos/#{repo}/statuses/#{sha}"
       expected_opts = { body: opts.to_json }
 

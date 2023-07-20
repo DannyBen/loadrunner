@@ -10,7 +10,7 @@ module Loadrunner
     include SignatureHelper
 
     get '/' do
-      "loadrunner ready"
+      'loadrunner ready'
     end
 
     post '/' do
@@ -25,7 +25,7 @@ module Loadrunner
       if request.content_type == 'application/json'
         json_string = payload_body
       else
-        json_string = URI.decode_www_form(payload_body).to_h["payload"]
+        json_string = URI.decode_www_form(payload_body).to_h['payload']
       end
       payload = JSON.parse json_string
 
@@ -38,7 +38,7 @@ module Loadrunner
       opts[:branch]  = payload['ref'] =~ /refs\/heads/ ? payload['ref'].sub('refs/heads/', '') : nil
       opts[:tag]     = payload['ref'] =~ /refs\/tags/ ? payload['ref'].sub('refs/tags/', '') : nil
 
-      File.write "last_payload.json", json_string if ENV['DEBUG']
+      File.write 'last_payload.json', json_string if ENV['DEBUG']
 
       runner = Runner.new opts
       success = runner.execute

@@ -66,7 +66,7 @@ module Loadrunner
       hooks = [
         "#{hooks_dir}/global",
         "#{hooks_dir}/#{opts[:repo]}/global",
-        "#{base}"
+        "#{base}",
       ]
 
       hooks << "#{base}@branch=#{opts[:branch]}" if opts[:branch]

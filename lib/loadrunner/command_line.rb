@@ -12,7 +12,7 @@ module Loadrunner
 
     version VERSION
     docopt File.expand_path 'docopt.txt', __dir__
-    subcommands [:event, :payload, :status, :server]
+    subcommands %i[event payload status server]
 
     def event
       client = Client.new client_opts
@@ -52,7 +52,7 @@ module Loadrunner
       {
         base_url:     args['URL'],
         secret_token: ENV['GITHUB_SECRET_TOKEN'],
-        encoding:     args['--form'] ? :form : :json
+        encoding:     args['--form'] ? :form : :json,
       }
     end
 

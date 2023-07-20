@@ -1,6 +1,6 @@
 require 'sinatra/base'
-require "sinatra/reloader"
-require "sinatra/json"
+require 'sinatra/reloader'
+require 'sinatra/json'
 
 module Loadrunner
   # The base class for the sinatra server.

@@ -11,7 +11,7 @@ module Loadrunner
           state:       state,
           target_url:  url,
           context:     context,
-          description: description
+          description: description,
         }
 
         api.status repo, sha, opts
