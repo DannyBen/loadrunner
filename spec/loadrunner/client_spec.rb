@@ -54,7 +54,14 @@ describe Client do
     end
 
     it 'converts payload to json' do
-      expected = { body: payload.to_json, headers: { 'X-GitHub-Event' => 'push', 'Content-Type' => 'application/json' } }
+      expected = {
+        body:    payload.to_json,
+        headers: {
+          'X-GitHub-Event' => 'push',
+          'Content-Type'   => 'application/json',
+        },
+      }
+
       expect(described_class).to receive(:post).with(anything, expected)
       subject.send_payload(:push, payload)
     end

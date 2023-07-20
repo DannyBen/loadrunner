@@ -19,11 +19,14 @@ module Loadrunner
       @response[:matching_hooks] = matching_hooks
 
       if hooks.empty?
-        @response[:error] = "Could not find any hook to process this request. Please implement one of the 'matching_hooks'."
+        @response[:error] =
+          "Could not find any hook to process this request. Please implement one of the 'matching_hooks'."
+
         false
       else
         execute_all hooks
         @response[:executed_hooks] = hooks
+
         true
       end
     end

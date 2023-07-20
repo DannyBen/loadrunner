@@ -5,20 +5,8 @@ RSpec/AnyInstance:
     - 'spec/loadrunner/server_spec.rb'
     - 'spec/loadrunner/status_spec.rb'
 
-# Offense count: 2
-# Configuration parameters: CountAsOne.
-RSpec/ExampleLength:
-  Max: 10
-
 # Offense count: 4
 RSpec/StubbedMock:
   Exclude:
     - 'spec/loadrunner/command_line_spec.rb'
     - 'spec/loadrunner/status_spec.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
-# URISchemes: http, https
-Layout/LineLength:
-  Max: 126
