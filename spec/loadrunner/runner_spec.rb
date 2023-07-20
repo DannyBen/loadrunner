@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Runner do
   describe '#execute' do
     subject { described_class.new repo: 'myrepo', event: 'pop', branch: 'slave' }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Status do
   subject { described_class }
 

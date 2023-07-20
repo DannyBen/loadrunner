@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe SignatureHelper do
   describe '#verify_signature' do
     let(:payload) { { sample: 'payload' }.to_json }

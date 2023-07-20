@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Server do
   let(:runner_double) { double Runner, execute: true }
 

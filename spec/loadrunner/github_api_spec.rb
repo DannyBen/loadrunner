@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe GithubAPI do
   let(:sha) { 'S4mpl3Sh4C0d3' }
   let(:repo) { 'myrepo' }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Client do
   describe '#send_event' do
     context 'without arguments' do
