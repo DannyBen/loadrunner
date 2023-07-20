@@ -17,9 +17,9 @@ include Loadrunner
 # Bootstrap Sinatra testing with rspec
 module RSpecMixin
   include Rack::Test::Methods
-  def app() 
+  def app()
     described_class.prepare
-    described_class 
+    described_class
   end
 end
 
@@ -30,4 +30,3 @@ RSpec.configure do |config|
   config.include SignatureHelper
   config.example_status_persistence_file_path = 'spec/status.txt'
 end
-

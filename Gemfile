@@ -9,4 +9,3 @@ gem 'simplecov'
 gem 'yard'
 
 gemspec
-

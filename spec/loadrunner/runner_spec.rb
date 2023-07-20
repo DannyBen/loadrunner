@@ -10,9 +10,9 @@ describe Runner do
       ENV['LOADRUNNER_REPO'] = nil
       ENV['LOADRUNNER_EVENT'] = nil
       ENV['LOADRUNNER_BRANCH'] = nil
-      
+
       subject.execute
-      
+
       expect(ENV['LOADRUNNER_REPO']).to eq 'myrepo'
       expect(ENV['LOADRUNNER_EVENT']).to eq 'pop'
       expect(ENV['LOADRUNNER_BRANCH']).to eq 'slave'
@@ -27,7 +27,7 @@ describe Runner do
         subject.execute
         actual = subject.response[:matching_hooks]
         expected = ["spec/hooks/global", "spec/hooks/myrepo/global",
-          "spec/hooks/myrepo/pop", "spec/hooks/myrepo/pop@branch=slave"]
+                    "spec/hooks/myrepo/pop", "spec/hooks/myrepo/pop@branch=slave"]
         expect(actual).to eq expected
       end
 
@@ -35,7 +35,7 @@ describe Runner do
         subject.execute
         actual = subject.response[:error]
         expected = /Could not find any hook/
-        expect(actual).to match expected        
+        expect(actual).to match expected
       end
     end
 
@@ -81,8 +81,6 @@ describe Runner do
         sleep 2
         expect(File.read 'secret.txt').to eq "There is no spoon\n"
       end
-
     end
-
   end
 end

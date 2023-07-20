@@ -6,7 +6,6 @@ require 'loadrunner/status'
 require 'loadrunner/version'
 
 module Loadrunner
-
   # Handles the command line interface
   class CommandLine < SuperDocopt::Base
     include Colsole
@@ -37,9 +36,9 @@ module Loadrunner
     end
 
     def status
-      response = Status.update repo: args['REPO'], 
-        sha: args['SHA'], 
-        state: args['STATE'], 
+      response = Status.update repo: args['REPO'],
+        sha: args['SHA'],
+        state: args['STATE'],
         context: args['--context'],
         description: args['--desc'],
         url: args['--url']
@@ -51,9 +50,9 @@ module Loadrunner
 
     def client_opts
       {
-        base_url: args['URL'], 
+        base_url:     args['URL'],
         secret_token: ENV['GITHUB_SECRET_TOKEN'],
-        encoding: args['--form'] ? :form : :json
+        encoding:     args['--form'] ? :form : :json
       }
     end
 

@@ -8,7 +8,7 @@ describe Server do
   end
 
   describe "POST /" do
-    let(:payload) { {key: 'value'}.to_json }
+    let(:payload) { { key: 'value' }.to_json }
 
     context "with a json request" do
       let(:header) { { 'CONTENT_TYPE' => 'application/json' } }
@@ -21,7 +21,7 @@ describe Server do
 
     context "with a form-urlencoded request" do
       let(:header) { { 'CONTENT_TYPE' => 'application/x-www-form-urlencoded' } }
-      let(:payload) { URI.encode_www_form({ payload: {key: 'value'}.to_json }) }
+      let(:payload) { URI.encode_www_form({ payload: { key: 'value' }.to_json }) }
 
       it "executes the runner" do
         expect_any_instance_of(Runner).to receive(:execute)

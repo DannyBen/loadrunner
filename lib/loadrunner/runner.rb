@@ -1,5 +1,4 @@
 module Loadrunner
-
   # Executes event hooks
   class Runner
     attr_reader :opts
@@ -71,14 +70,13 @@ module Loadrunner
       ]
 
       hooks << "#{base}@branch=#{opts[:branch]}" if opts[:branch]
-      
+
       if opts[:tag]
-        hooks << "#{base}@tag=#{opts[:tag]}" 
+        hooks << "#{base}@tag=#{opts[:tag]}"
         hooks << "#{base}@tag"
       end
 
       hooks
     end
-
   end
 end

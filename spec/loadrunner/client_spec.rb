@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Client do
   describe "#send_event" do
     context "without arguments" do
-      let(:payload) { {:ref=>nil, :repository=>{:name=>nil}} }
+      let(:payload) { { :ref => nil, :repository => { :name=>nil } } }
 
       it "builds and sends a payload" do
         expect(subject).to receive(:send_payload).with(:push, payload)
@@ -12,7 +12,7 @@ describe Client do
     end
 
     context "with arguments" do
-      let(:payload) { {:ref=>'refs/heads/test', :repository=>{:name=>'myrepo'}} }
+      let(:payload) { { :ref => 'refs/heads/test', :repository => { :name=>'myrepo' } } }
 
       it "builds and sends a payload" do
         expect(subject).to receive(:send_payload).with(:ping, payload)
@@ -46,15 +46,15 @@ describe Client do
   end
 
   describe "#send_payload" do
-    let(:payload) { {ref: 'refs/heads/test', repository: {name: 'myrepo'}} }
-    
+    let(:payload) { { ref: 'refs/heads/test', repository: { name: 'myrepo' } } }
+
     it "sends a post http message" do
       expect(described_class).to receive(:post).with('', any_args)
       subject.send_payload(:push, payload)
     end
 
     it "converts payload to json" do
-      expected = { body: payload.to_json, headers: { "X-GitHub-Event"=>"push",  "Content-Type"=>"application/json" } }
+      expected = { body: payload.to_json, headers: { "X-GitHub-Event" => "push", "Content-Type" => "application/json" } }
       expect(described_class).to receive(:post).with(anything, expected)
       subject.send_payload(:push, payload)
     end
@@ -64,10 +64,11 @@ describe Client do
 
       it "converts payload to x-www-form-urlencoded" do
         body = URI.encode_www_form({ payload: payload.to_json })
-        expected = { body: body, headers: { "X-GitHub-Event"=>"push",  "Content-Type"=>"application/x-www-form-urlencoded" } }
+        expected = { body:    body,
+                     headers: { "X-GitHub-Event" => "push", "Content-Type" => "application/x-www-form-urlencoded" } }
         expect(described_class).to receive(:post).with(anything, expected)
         subject.send_payload(:push, payload)
-      end      
+      end
     end
 
     context "when secret_token is set" do
@@ -76,11 +77,11 @@ describe Client do
       end
 
       it "sends a signature in the header" do
-        expected = { 
-          headers: { 
+        expected = {
+          headers: {
             "X-GitHub-Event"  => "push",
             "X-Hub-Signature" => "sha1=f2d099c2ff67f1f52e1a0b9e8445306e1d30e6e4",
-            "Content-Type"=>"application/json"
+            "Content-Type"    => "application/json"
           },
         }
         expect(described_class).to receive(:post).with(anything, hash_including(expected))

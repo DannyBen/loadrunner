@@ -4,7 +4,6 @@ require 'loadrunner/signature_helper'
 require 'loadrunner/runner'
 
 module Loadrunner
-
   # The Sinatra server
   class Server < ServerBase
     include ServerHelper

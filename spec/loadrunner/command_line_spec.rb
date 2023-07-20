@@ -6,7 +6,7 @@ describe CommandLine do
 
   describe "without arguments" do
     it "shows usage patterns" do
-      expect {cli.execute}.to output(/Usage:/).to_stdout
+      expect { cli.execute }.to output(/Usage:/).to_stdout
     end
   end
 
@@ -25,7 +25,7 @@ describe CommandLine do
 
     it "sends a request" do
       expect_any_instance_of(Client).to receive(:send_event).and_return(response)
-      expect {cli.execute command}.to output(/#{response}/).to_stdout
+      expect { cli.execute command }.to output(/#{response}/).to_stdout
     end
   end
 
@@ -37,20 +37,20 @@ describe CommandLine do
 
     it "sends a request" do
       expect_any_instance_of(Client).to receive(:send_payload).with('push', json).and_return(response)
-      expect {cli.execute command}.to output(/#{response}/).to_stdout
+      expect { cli.execute command }.to output(/#{response}/).to_stdout
     end
 
     context "with an invalid file" do
       let(:file) { 'no-such-file.json' }
 
       it "raises ArgumentError" do
-        expect {cli.execute command}.to raise_error(ArgumentError)
+        expect { cli.execute command }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe "status" do
-    let(:command) { %w[status me/myrepo somesha success ] }
+    let(:command) { %w[status me/myrepo somesha success] }
     let(:response) { OpenStruct.new code: 200 }
 
     it "prints the response to stdout" do
