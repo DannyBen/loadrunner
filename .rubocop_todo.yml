@@ -2,14 +2,8 @@
 # This cop supports safe autocorrection (--autocorrect).
 Performance/RegexpMatch:
   Exclude:
-    # - 'lib/loadrunner/client.rb'
+    - 'lib/loadrunner/client.rb'
     - 'lib/loadrunner/command_line.rb'
-    - 'lib/loadrunner/server.rb'
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/StringInclude:
-  Exclude:
     - 'lib/loadrunner/server.rb'
 
 # Offense count: 7

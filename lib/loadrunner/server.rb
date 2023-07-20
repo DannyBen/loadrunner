@@ -35,8 +35,8 @@ module Loadrunner
       opts[:commit]  = payload['after']
       opts[:event]   = request.env['HTTP_X_GITHUB_EVENT']
       opts[:ref]     = payload['ref']
-      opts[:branch]  = payload['ref'] =~ /refs\/heads/ ? payload['ref'].sub('refs/heads/', '') : nil
-      opts[:tag]     = payload['ref'] =~ /refs\/tags/ ? payload['ref'].sub('refs/tags/', '') : nil
+      opts[:branch]  = payload['ref']&.include?('refs/heads') ? payload['ref'].sub('refs/heads/', '') : nil
+      opts[:tag]     = payload['ref']&.include?('refs/tags') ? payload['ref'].sub('refs/tags/', '') : nil
 
       File.write 'last_payload.json', json_string if ENV['DEBUG']
 
