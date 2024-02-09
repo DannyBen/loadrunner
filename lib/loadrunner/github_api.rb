@@ -17,7 +17,7 @@ module Loadrunner
       message = {
         body: {
           state:       (opts[:state] ? opts[:state].to_s : 'pending'),
-          context:     (opts[:context] || 'Loadrunner'),
+          context:     opts[:context] || 'Loadrunner',
           description: opts[:description],
           target_url:  opts[:target_url],
         }.to_json,

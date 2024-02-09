@@ -1,8 +1,13 @@
-FROM dannyben/alpine-ruby
+FROM dannyben/alpine-ruby:3.2.2
+
+ENV MADNESS_VERSION=0.4.4
 
 WORKDIR /app
 
-RUN gem install json loadrunner
+VOLUME /app
+
+RUN gem install bashly --version $MADNESS_VERSION && \
+    gem update --system
 
 EXPOSE 3000
 
