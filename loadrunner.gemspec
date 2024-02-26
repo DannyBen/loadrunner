@@ -13,14 +13,14 @@ Gem::Specification.new do |s|
   s.executables = ['loadrunner']
   s.homepage    = 'https://github.com/DannyBen/loadrunner'
   s.license     = 'MIT'
-  s.required_ruby_version = '>= 3.0'
+  s.required_ruby_version = '>= 3.1'
 
-  s.add_dependency 'colsole', '>= 0.8.1', '< 2.0'
+  s.add_dependency 'colsole', '~> 1.0'
   s.add_dependency 'httparty', '~> 0.21'
   s.add_dependency 'puma', '~> 6.0'
   s.add_dependency 'sinatra', '>= 3.0', '< 5'
   s.add_dependency 'sinatra-contrib', '>= 3.0', '< 5'
-  s.add_dependency 'super_docopt', '~> 0.1'
+  s.add_dependency 'super_docopt', '~> 0.2'
 
   # REMOVE ME
   s.add_dependency 'bigdecimal', '>= 0'  # to address ruby warning by multi_xml

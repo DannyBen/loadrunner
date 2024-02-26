@@ -5,8 +5,13 @@ Untagged - Latest
 ----------------------------------------
 
 - Drop support for Ruby <= 2.6
+- Drop support for Ruby 2.x
+- Allow Sinatra 4
+- Add explicit dependencies for Ruby 3.3
+- Build docker images automatically
 
 
+<!-- break v0.4.4 -->
 ## [v0.4.4](https://github.com/DannyBen/loadrunner/tree/v0.4.4) (2019-12-27)
 
 [Full Changelog](https://github.com/DannyBen/loadrunner/compare/v0.4.3...v0.4.4)
