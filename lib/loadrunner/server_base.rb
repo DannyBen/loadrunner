@@ -17,7 +17,7 @@ module Loadrunner
     end
 
     # Since we cannot use any config values in the main body of the class,
-    # since they will be updated later, we need to set anything that relys
+    # since they will be updated later, we need to set anything that relies
     # on the config values just before running the server.
     # The CommandLine class and the test suite should both call
     # `Server.prepare` before calling Server.run!
