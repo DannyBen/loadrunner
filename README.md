@@ -1,6 +1,8 @@
 Loadrunner - GitHub Webhook Server and Event Simulator
 ======================================================
 
+![repocard](https://repocard.dannyben.com/svg/loadrunner.svg)
+
 Loadrunner is a multi-purpose utility for working with GitHub webhooks and 
 statuses.
 
